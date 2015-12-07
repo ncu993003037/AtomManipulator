@@ -10,11 +10,6 @@ namespace motor
 {
 	namespace faulhaber
 	{
-		//===========角度/count = encoder line*4/360*減速比==============
-		//齒輪比[300,400,200,268,200,268,268]
-		//encoder line*4[3000,200
-		static const int COUNT_RATIO[] = {-1111,1422,1138,1422,1138,-1707};
-
 		class DSPdriver
 		{
 		public:
@@ -70,7 +65,7 @@ namespace motor
 			_motor_action_go(false)
 		{	
 			// Find COMs
-			_init_success = COMPortInitial(115200);
+			_init_success = COMPortInitial(expected_baud_rate);
 
 			// Zeroing
 			_motor_input = new float[_DOF];
@@ -138,7 +133,7 @@ namespace motor
 			{
 				// Load port list from the text file
 				std::vector<std::string> com_port_list(_DOF);
-				std::fstream file("Motor Control/COMPort_list.txt");
+				std::fstream file("MotorControl/COMPort_list.txt");
 				int i = 0;
 				std::string temp;
 				if (file.is_open())
@@ -217,7 +212,7 @@ namespace motor
 
 				QueryPerformanceCounter(&_CurrentTime);
 				_ElapsedMicroseconds.QuadPart = _CurrentTime.QuadPart - _StartTime.QuadPart;
-				_ElapsedMicroseconds.QuadPart *= 1000000;
+				_ElapsedMicroseconds.QuadPart *= 1000000; // Micro-seconds
 				_ElapsedMicroseconds.QuadPart /= _nFreq.QuadPart;
 				//std::cout<<ElapsedMicroseconds.QuadPart<<std::endl;
 
@@ -229,10 +224,10 @@ namespace motor
 						_DSP[i].WriteOneMotorCommand(_motor_input[i], i);
 				}
 
-				usleep(6000);
+				usleep(sleep_time_micro_sec);
 			}
 
-			// Wait for thread to stop
+			// Wait for thread stop
 			OnClose();
 
 			return 0;

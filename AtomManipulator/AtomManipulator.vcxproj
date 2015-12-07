@@ -110,6 +110,7 @@
       <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <Culture>0x0404</Culture>
       <AdditionalIncludeDirectories>$(IntDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <ResourceOutputFileName>$(IntDir)%(ProjectName).res</ResourceOutputFileName>
     </ResourceCompile>
     <Link>
       <AdditionalDependencies>lapack.lib;libf2c.lib;blas.lib;glaux.lib;cv.lib;cxcore.lib;cvaux.lib;highgui.lib;kernel32.lib;user32.lib;gdi32.lib;gdiplus.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;Kinect10.lib;%(AdditionalDependencies)</AdditionalDependencies>
@@ -199,6 +200,8 @@
     <ClInclude Include="AtomManipulatorDlg.h" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="..\LICENSE" />
+    <None Include="..\README.md" />
     <None Include="res\AtomManipulator.ico" />
     <None Include="res\AtomManipulator.rc2" />
   </ItemGroup>
@@ -210,7 +213,7 @@
   </ImportGroup>
   <ProjectExtensions>
     <VisualStudio>
-      <UserProperties RESOURCE_FILE="Robot Arm.rc" />
+      <UserProperties RESOURCE_FILE="" />
     </VisualStudio>
   </ProjectExtensions>
 </Project>

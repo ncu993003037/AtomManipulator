@@ -87,7 +87,6 @@ BEGIN_MESSAGE_MAP(CRobotArmDlg, CDialog)
 	ON_BN_CLICKED(IDC_CHECK_DrawGround, &CRobotArmDlg::OnBnClickedCheckDrawground)
 	ON_BN_CLICKED(IDC_CHECK_Motor, &CRobotArmDlg::OnBnClickedCheckMotor)
 	ON_BN_CLICKED(IDC_BUTTON11, &CRobotArmDlg::OnBnClickedButton11)
-	ON_BN_CLICKED(IDC_BUTTON14, &CRobotArmDlg::OnBnClickedButton14)
 	ON_EN_CHANGE(IDC_EDIT_NumPts, &CRobotArmDlg::OnEnChangeEditNumpts)
 	ON_EN_CHANGE(IDC_EDIT_X, &CRobotArmDlg::OnEnChangeEditX)
 	ON_EN_CHANGE(IDC_EDIT_Y, &CRobotArmDlg::OnEnChangeEditY)
@@ -143,11 +142,10 @@ BOOL CRobotArmDlg::OnInitDialog()
 
 	CheckDrawGround = &openGLControl.CDrawGround;
 
-	create_all_threads();
+	Robot_Mode = AtomManipulatorInitialization();
 
-#if MOTOR 
-	Motor_Action_Btn.EnableWindow(TRUE);
-#endif
+	if (Robot_Mode)
+		Motor_Action_Btn.EnableWindow(TRUE);
 
 	m_edCtrl_NumPts.SetWindowTextA("100");
 	m_edCtrl_X.SetWindowTextA("0.5");
@@ -157,9 +155,20 @@ BOOL CRobotArmDlg::OnInitDialog()
 	m_edCtrl_RY.SetWindowTextA("0.0");
 	m_edCtrl_RZ.SetWindowTextA("0.0");
 
-	OnBnClickedButton14();
-
 	pMainDlg = this;
+
+	CString str;
+	str.Format("%.2f",openGLControl.rpX);
+	m_edCtrl_RX.SetWindowTextA(str);
+	str.Format("%.2f",openGLControl.rpY);
+	m_edCtrl_RY.SetWindowTextA(str);
+	str.Format("%.2f",openGLControl.rpZ);
+	m_edCtrl_RZ.SetWindowTextA(str);
+
+	if (Robot_Mode)
+		SetDlgItemText(IDC_STATUS, "[Real-robot Mode] Atom is ready to GO.");
+	else
+		SetDlgItemText(IDC_STATUS, "[Simulation Mode] Atom is ready to GO.");
 
 	// TODO: 在此加入額外的初始設定
 	return TRUE;  // 傳回 TRUE，除非您對控制項設定焦點
@@ -366,54 +375,6 @@ void CRobotArmDlg::OnBnClickedButton11()
 	//reactiveControllerTJ.modified = true;
 }
 
-void CRobotArmDlg::OnBnClickedButton14()
-{
-	// TODO: Add your control notification handler code here
-
-	////Kinematics initialization
-	//KineAll.InitKineTrains();
-	//KineAll.FindFK();
-	//////KineAll.FindCOG();
-	//KineAll.ComputeJacobians();
-
-	//KineAll.GetLegsCoords();
-
-	//KineAll.ComputeEulerAng(KineAll.LLegRotM, KineAll.EuAngLL);
-
-	//KineAll.initLL[0] = KineAll.CrdAll->data[18];
-	//KineAll.initLL[1] = KineAll.CrdAll->data[19];
-	//KineAll.initLL[2] = KineAll.CrdAll->data[20];
-
-	//openGLControl.pX = KineAll.initLL[0];
-	//openGLControl.pY = KineAll.initLL[1];
-	//openGLControl.pZ = KineAll.initLL[2];
-
-	//openGLControl.rpX = KineAll.EuAngLL[0]/3.14159265*180.;
-	//openGLControl.rpY = KineAll.EuAngLL[1]/3.14159265*180.;
-	//openGLControl.rpZ = KineAll.EuAngLL[2]/3.14159265*180.;
-
-	//openGLControl.TrajInput[0] = openGLControl.pX;
-	//openGLControl.TrajInput[1] = openGLControl.pY;
-	//openGLControl.TrajInput[2] = openGLControl.pZ;
-
-	CString str;
-	str.Format("%.2f",openGLControl.rpX);
-	m_edCtrl_RX.SetWindowTextA(str);
-	str.Format("%.2f",openGLControl.rpY);
-	m_edCtrl_RY.SetWindowTextA(str);
-	str.Format("%.2f",openGLControl.rpZ);
-	m_edCtrl_RZ.SetWindowTextA(str);
-
-	SetDlgItemText(IDC_STATUS, "IK Initialized. Robot is ready to GO.");
-
-	//for (int i = 0 ; i < 7 ; i++)
-	//{
-	//	cout<<KineAll.CrdAll->data[3*i]<<" "<<KineAll.CrdAll->data[3*i+1]<<" "<<KineAll.CrdAll->data[3*i+2]<<endl;
-	//}
-
-	//printf("IK initialization: %f, %f, %f\n",KineAll.initLL[0],KineAll.initLL[1],KineAll.initLL[2]);
-}
-
 void CRobotArmDlg::OnBnClickedButton5() //RESET BUTTON
 {
 	//breakflag = true;
@@ -488,8 +449,6 @@ void CRobotArmDlg::OnBnClickedMrvic()
 #endif
 
 	//cout<<"Num. of CPUs: "<<GetNumCPUs()<<endl;
-
-	create_all_threads();
 
 //#if MOTOR
 	//gSendingThread = CreateThread(NULL,0,(LPTHREAD_START_ROUTINE)commandThreadLoop,(void*)0,0,&gTIDSending);

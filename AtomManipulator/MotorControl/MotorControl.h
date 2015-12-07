@@ -12,6 +12,13 @@ namespace motor
 	{
 		class DSPdriver;
 
+		static const int sleep_time_micro_sec = 6000;
+		static const int expected_baud_rate = 115200;
+		//===========角度/count = encoder line*4/360*減速比==============
+		//齒輪比[300,400,200,268,200,268,268]
+		//encoder line*4[3000,200
+		static const int COUNT_RATIO[] = {-1111, 1422, 1138, 1422, 1138, -1707};
+	
 		class MotorControl 
 		{
 		public:

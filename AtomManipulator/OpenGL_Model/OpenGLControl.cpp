@@ -322,63 +322,6 @@ void COpenGLControl::DrawGLScene()
 
 
 	// Robot sticks
-	//glPushMatrix();
-	//glTranslatef(KineAll.CrdAll->data[6]/1000.,KineAll.CrdAll->data[7]/1000.,KineAll.CrdAll->data[8]/1000.);
-	//glPushMatrix();
-	//glColor3f( 1.0, 0.3, 0 );
-	//glutSolidSphere(0.02,10,10);
-	//glPopMatrix();
-	//glPopMatrix();
-
-	//glLineWidth(5.0); 
-	//glColor3f(0.8, 0.8, 0.8);
-	//glBegin(GL_LINES);
-	//glVertex3f( KineAll.CrdAll->data[6]/1000., 
-	//	KineAll.CrdAll->data[7]/1000., 
-	//	KineAll.CrdAll->data[8]/1000.);
-	//glVertex3f( KineAll.CrdAll->data[9]/1000., 
-	//	KineAll.CrdAll->data[10]/1000.,
-	//	KineAll.CrdAll->data[11]/1000.);
-	//glEnd();
-
-	//glPushMatrix();
-	//glTranslatef(KineAll.CrdAll->data[9]/1000.,KineAll.CrdAll->data[10]/1000.,KineAll.CrdAll->data[11]/1000.);
-	//glPushMatrix();
-	//glColor3f( 1.0, 0.3, 0 );
-	//glutSolidSphere(0.02,10,10);
-	//glPopMatrix();
-	//glPopMatrix();
-
-	//glLineWidth(5.0); 
-	//glColor3f(0.8, 0.8, 0.8);
-	//glBegin(GL_LINES);
-	//glVertex3f( KineAll.CrdAll->data[12]/1000., 
-	//	KineAll.CrdAll->data[13]/1000., 
-	//	KineAll.CrdAll->data[14]/1000.);
-	//glVertex3f( KineAll.CrdAll->data[15]/1000., 
-	//	KineAll.CrdAll->data[16]/1000.,
-	//	KineAll.CrdAll->data[17]/1000.);
-	//glEnd();
-
-	//glPushMatrix();
-	//glTranslatef(KineAll.CrdAll->data[15]/1000.,KineAll.CrdAll->data[16]/1000.,KineAll.CrdAll->data[17]/1000.);
-	//glPushMatrix();
-	//glColor3f( 1.0, 0.3, 0 );
-	//glutSolidSphere(0.02,10,10);
-	//glPopMatrix();
-	//glPopMatrix();
-
-	//glLineWidth(5.0); 
-	//glColor3f(0.8, 0.8, 0.8);
-	//glBegin(GL_LINES);
-	//glVertex3f( KineAll.CrdAll->data[15]/1000., 
-	//	KineAll.CrdAll->data[16]/1000., 
-	//	KineAll.CrdAll->data[17]/1000.);
-	//glVertex3f( KineAll.CrdAll->data[18]/1000., 
-	//	KineAll.CrdAll->data[19]/1000.,
-	//	KineAll.CrdAll->data[20]/1000.);
-	//glEnd();
-
 	robot.draw_stick();
 
 	glPushMatrix();

@@ -4,6 +4,8 @@
 
 #define MOTOR 1
 #define KINECT 0
+
+// Robot config
 #define ROBOT_DOF 6
 
 // Global variables
@@ -29,10 +31,10 @@ extern	ArmKinematic RArm;
 	extern KinectSensor kinect;
 #endif
 
-// Motion Control
+// Robot Model
 #include "MotionControl/KineChain/KineChain.h"
 extern motion::KineChain robot;
 
-void create_all_threads(void);
+int AtomManipulatorInitialization(void); // Return 1: Real-robot Mode 2: Simulation Mode
 
 #endif

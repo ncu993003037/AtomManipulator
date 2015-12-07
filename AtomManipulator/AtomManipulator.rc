@@ -46,8 +46,8 @@ BEGIN
     "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_CHT)\r\n"
     "LANGUAGE 4, 1\r\n"
     "#pragma code_page(950)\r\n"
-    "#include ""res\\RobotArm.rc2""  // ?D Microsoft Visual C++ ?s?e1Lao!Me!P?\r\n"
-    "#include ""afxres.rc""     // ?D!PC?!M¢FDo\r\n"
+    "#include ""res\\AtomManipulator.rc2""  // ?D Microsoft Visual C++ ?s?e1Lao!Me!P?\r\n"
+    "#include ""afxres.rc""     // ?D!PC?!M¢FFFFFFDo\r\n"
     "#endif\r\n"
     "\0"
 END
@@ -80,21 +80,20 @@ BEGIN
     DEFPUSHBUTTON   "½T©w",IDOK,178,7,50,16,WS_GROUP
 END
 
-IDD_ROBOTARM_DIALOG DIALOGEX 0, 0, 491, 375
+IDD_ROBOTARM_DIALOG DIALOGEX 0, 0, 507, 375
 STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_MINIMIZEBOX | WS_MAXIMIZEBOX | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
 EXSTYLE WS_EX_APPWINDOW
 CAPTION "AtomManipulator"
 FONT 9, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
-    PUSHBUTTON      "Robot Reset",IDC_BUTTON5,423,77,50,17
+    PUSHBUTTON      "Robot Reset",IDC_BUTTON5,423,68,69,26
     CONTROL         "Draw E.E.Axis",IDC_CHECK3,"Button",BS_AUTOCHECKBOX | WS_DISABLED | WS_TABSTOP,423,122,53,10
     CONTROL         "Static",IDC_Draw_Scene,"Static",SS_LEFTNOWORDWRAP | NOT WS_VISIBLE | WS_GROUP,2,1,412,367,WS_EX_DLGMODALFRAME | WS_EX_CLIENTEDGE
     CONTROL         "Draw Ground",IDC_CHECK_DrawGround,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,423,133,53,10
-    GROUPBOX        "Drawing",IDC_STATIC,418,100,62,53
-    CONTROL         "Motor Action",IDC_CHECK_Motor,"Button",BS_AUTOCHECKBOX | WS_DISABLED | WS_TABSTOP,423,47,51,10
+    GROUPBOX        "Drawing",IDC_STATIC,418,100,77,53
+    CONTROL         "Motor Action",IDC_CHECK_Motor,"Button",BS_AUTOCHECKBOX | WS_DISABLED | WS_TABSTOP,423,56,51,10
     CONTROL         "Draw Robot",IDC_CHECK_DrawRealArm,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,423,111,54,10
-    PUSHBUTTON      "P2P Go",IDC_BUTTON11,425,271,50,16
-    PUSHBUTTON      "IK Init",IDC_BUTTON14,423,58,50,17,WS_DISABLED
+    PUSHBUTTON      "P2P Go",IDC_BUTTON11,425,271,65,16
     EDITTEXT        IDC_EDIT_NumPts,442,169,36,12,ES_AUTOHSCROLL
     LTEXT           "Pts:",IDC_STATIC,429,170,12,8
     LTEXT           "X:",IDC_STATIC,434,185,8,8
@@ -103,18 +102,18 @@ BEGIN
     EDITTEXT        IDC_EDIT_X,442,183,36,12,ES_AUTOHSCROLL
     EDITTEXT        IDC_EDIT_Y,442,197,36,12,ES_AUTOHSCROLL
     EDITTEXT        IDC_EDIT_Z,442,213,36,12,ES_AUTOHSCROLL
-    GROUPBOX        "Point To Point",IDC_STATIC,418,155,63,137
+    GROUPBOX        "Point To Point",IDC_STATIC,418,155,77,137
     LTEXT           "RotX:",IDC_STATIC,423,229,18,8
     LTEXT           "RotY:",IDC_STATIC,423,242,21,8
     LTEXT           "RotZ:",IDC_STATIC,423,257,18,8
     EDITTEXT        IDC_EDIT_RX,442,226,36,13,ES_AUTOHSCROLL
     EDITTEXT        IDC_EDIT_RY,442,241,36,12,ES_AUTOHSCROLL
     EDITTEXT        IDC_EDIT_RZ,442,255,36,12,ES_AUTOHSCROLL
-    CTEXT           "This is Atom.",IDC_STATUS,424,12,56,19
-    GROUPBOX        "Status",IDC_STATIC,418,1,62,33
-    GROUPBOX        "Arm",IDC_STATIC,418,38,62,59
-    PUSHBUTTON      "Maverick",IDC_MRVIC,425,333,50,14
-    CONTROL         "Check2",IDC_CHECK2,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,430,307,39,10
+    CTEXT           "This is Atom.",IDC_STATUS,424,12,67,29
+    GROUPBOX        "Status",IDC_STATIC,418,1,77,44
+    GROUPBOX        "Arm",IDC_STATIC,418,47,77,50
+    PUSHBUTTON      "Maverick",IDC_MRVIC,425,333,62,21
+    CONTROL         "Check2",IDC_CHECK2,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,437,313,39,10
 END
 
 IDD_DIALOG1 DIALOGEX 0, 0, 151, 189
@@ -240,7 +239,7 @@ BEGIN
     IDD_ROBOTARM_DIALOG, DIALOG
     BEGIN
         LEFTMARGIN, 2
-        RIGHTMARGIN, 486
+        RIGHTMARGIN, 502
         TOPMARGIN, 1
         BOTTOMMARGIN, 368
     END
@@ -291,8 +290,8 @@ END
 #if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_CHT)
 LANGUAGE 4, 1
 #pragma code_page(950)
-#include "res\AtomManipulator.rc2"  // ?D Microsoft Visual C++ ?s?e1Lao¡Me¡P?
-#include "afxres.rc"     // ?D¡PC?¡M¢Do
+#include "res\AtomManipulator.rc2"  // ?D Microsoft Visual C++ ?s?e1Lao!Me!P?
+#include "afxres.rc"     // ?D!PC?!M¢FFFFFDo
 #endif
 
 /////////////////////////////////////////////////////////////////////////////

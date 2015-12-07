@@ -22,7 +22,7 @@
 #define PI 3.14159265359
 #endif
 
-class motor::faulhaber::MotorControl;
+//class motor::faulhaber::MotorControl;
 
 namespace motion
 {
@@ -97,11 +97,14 @@ namespace motion
 		double *Jac_k; // temp_obj
 		float T_end [16]; // Transformation matrix of end-effector (for GL)
 
+	// This pointer is used to throw motor commands after FK
 	private:
 		motor::faulhaber::MotorControl* _motors;
+		bool _if_set_motor_ptr;
 
 	public:
-		void set_motor_control_ptr(motor::faulhaber::MotorControl *ptr_) { _motors =  ptr_; }
+		void set_motor_control_ptr(motor::faulhaber::MotorControl *ptr_)
+		{ _motors =  ptr_; _if_set_motor_ptr = true;}
 	};
 }/* namespace motion */
 
