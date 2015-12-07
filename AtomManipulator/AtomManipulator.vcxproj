@@ -1,0 +1,216 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Template|Win32">
+      <Configuration>Template</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{67F1F1B2-8070-4CC6-8875-BC9498391E92}</ProjectGuid>
+    <RootNamespace>RobotArm</RootNamespace>
+    <Keyword>MFCProj</Keyword>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseOfMfc>Dynamic</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseOfMfc>Dynamic</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.30319.1</_ProjectFileVersion>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(SolutionDir)$(Configuration)\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(Configuration)\</IntDir>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</LinkIncremental>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(SolutionDir)$(Configuration)\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(Configuration)\</IntDir>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</LinkIncremental>
+    <ExecutablePath Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(VCInstallDir)PlatformSDK\bin;$(VSInstallDir)\SDK\v2.0\bin;$(ExecutablePath)</ExecutablePath>
+    <IncludePath Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IncludePath)</IncludePath>
+    <LibraryPath Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">(WindowsSdkDir)lib;$(LibraryPath)</LibraryPath>
+    <IncludePath Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">C:\LeapDeveloperKit\LeapSDK\include;$(IncludePath)</IncludePath>
+    <LibraryPath Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">C:\LeapDeveloperKit\LeapSDK\lib\x86;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Midl>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MkTypLibCompatible>false</MkTypLibCompatible>
+      <ValidateAllParameters>false</ValidateAllParameters>
+    </Midl>
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>GL;Pattern Generator;C:\Program Files\CLAPACK-3.1.1\LIB\Win32;C:\Program Files\CLAPACK-3.1.1\INCLUDE;newmat10;pqp\include;pqp\src;pqp\lib;OpenGL PQP Model List;ANN;.\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>true</MinimalRebuild>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0404</Culture>
+      <AdditionalIncludeDirectories>$(IntDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Link>
+      <AdditionalDependencies>clapack.lib;libf2c.lib;blas.lib;libboost_thread-vc80-mt-gd-1_33_1.lib;pqp.lib;glaux.lib;ANN.lib;cv.lib;cxcore.lib;highgui.lib;cvaux.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>BoostThreadLib;C:\Program Files\CLAPACK-3.1.1\LIB\Win32;pqp\lib;ANN;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <IgnoreSpecificDefaultLibraries>LIBCD.lib;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Console</SubSystem>
+      <TargetMachine>MachineX86</TargetMachine>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Midl>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MkTypLibCompatible>false</MkTypLibCompatible>
+      <ValidateAllParameters>false</ValidateAllParameters>
+    </Midl>
+    <ClCompile>
+      <AdditionalIncludeDirectories>3rdParty\OpenCV\otherlibs\highgui;3rdParty\OpenCV\cxcore\include;3rdParty\OpenCV\cvaux\include;3rdParty\OpenCV\cv\include;3rdParty\Kinect\inc;3rdParty\CLAPACK-3.2.1\INCLUDE;.\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>false</MinimalRebuild>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <OpenMPSupport>true</OpenMPSupport>
+      <Optimization>MaxSpeed</Optimization>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0404</Culture>
+      <AdditionalIncludeDirectories>$(IntDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Link>
+      <AdditionalDependencies>lapack.lib;libf2c.lib;blas.lib;glaux.lib;cv.lib;cxcore.lib;cvaux.lib;highgui.lib;kernel32.lib;user32.lib;gdi32.lib;gdiplus.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;Kinect10.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>3rdParty;3rdParty\OpenCV\lib;3rdParty\Kinect\lib\x86;3rdParty\CLAPACK-3.2.1\LIB;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <IgnoreSpecificDefaultLibraries>LIBCD.lib;libcmt.lib;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Console</SubSystem>
+      <OptimizeReferences>true</OptimizeReferences>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <TargetMachine>MachineX86</TargetMachine>
+      <DelayLoadDLLs>
+      </DelayLoadDLLs>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="MotionControl\KineChain\KineChain.cpp" />
+    <ClCompile Include="MotionControl\Math\MatLib.cpp" />
+    <ClCompile Include="MotorControl\MotorControl.cpp" />
+    <ClCompile Include="MotorControl\SerialPort\serial_port.cpp" />
+    <ClCompile Include="ThreadControl.cpp" />
+    <ClCompile Include="mfcconsole.cpp" />
+    <ClCompile Include="OpenGL_Model\DH_matrix.cpp" />
+    <ClCompile Include="OpenGL_Model\DH_Model.cpp" />
+    <ClCompile Include="OpenGL_Model\Draw_Function.cpp" />
+    <ClCompile Include="OpenGL_Model\newmat10\bandmat.cpp" />
+    <ClCompile Include="OpenGL_Model\newmat10\cholesky.cpp" />
+    <ClCompile Include="OpenGL_Model\newmat10\evalue.cpp" />
+    <ClCompile Include="OpenGL_Model\newmat10\fft.cpp" />
+    <ClCompile Include="OpenGL_Model\newmat10\hholder.cpp" />
+    <ClCompile Include="OpenGL_Model\newmat10\jacobi.cpp" />
+    <ClCompile Include="OpenGL_Model\newmat10\myexcept.cpp" />
+    <ClCompile Include="OpenGL_Model\newmat10\newfft.cpp" />
+    <ClCompile Include="OpenGL_Model\newmat10\newmat1.cpp" />
+    <ClCompile Include="OpenGL_Model\newmat10\newmat2.cpp" />
+    <ClCompile Include="OpenGL_Model\newmat10\newmat3.cpp" />
+    <ClCompile Include="OpenGL_Model\newmat10\newmat4.cpp" />
+    <ClCompile Include="OpenGL_Model\newmat10\newmat5.cpp" />
+    <ClCompile Include="OpenGL_Model\newmat10\newmat6.cpp" />
+    <ClCompile Include="OpenGL_Model\newmat10\newmat7.cpp" />
+    <ClCompile Include="OpenGL_Model\newmat10\newmat8.cpp" />
+    <ClCompile Include="OpenGL_Model\newmat10\newmat9.cpp" />
+    <ClCompile Include="OpenGL_Model\newmat10\newmatex.cpp" />
+    <ClCompile Include="OpenGL_Model\newmat10\newmatnl.cpp" />
+    <ClCompile Include="OpenGL_Model\newmat10\newmatrm.cpp" />
+    <ClCompile Include="OpenGL_Model\newmat10\solution.cpp" />
+    <ClCompile Include="OpenGL_Model\newmat10\sort.cpp" />
+    <ClCompile Include="OpenGL_Model\newmat10\submat.cpp" />
+    <ClCompile Include="OpenGL_Model\newmat10\svd.cpp" />
+    <ClCompile Include="OpenGL_Model\OpenGLControl.cpp" />
+    <ClCompile Include="OpenGL_Model\OpenGLDevice.cpp" />
+    <ClCompile Include="Sensors\KinectSensor\KinectSensor.cpp" />
+    <ClCompile Include="stdafx.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="AtomManipulator.cpp" />
+    <ClCompile Include="AtomManipulatorDlg.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="MotionControl\KineChain\KineChain.h" />
+    <ClInclude Include="MotionControl\Math\MatLib.h" />
+    <ClInclude Include="MotorControl\MotorControl.h" />
+    <ClInclude Include="MotorControl\SerialPort\serial_port.h" />
+    <ClInclude Include="MotorControl\SerialPort\util.h" />
+    <ClInclude Include="OpenGL_Model\DH_matrix.h" />
+    <ClInclude Include="OpenGL_Model\DH_Model.h" />
+    <ClInclude Include="OpenGL_Model\OpenGLControl.h" />
+    <ClInclude Include="OpenGL_Model\OpenGLDevice.h" />
+    <ClInclude Include="OpenGL_Model\Rendering\BASE.h" />
+    <ClInclude Include="OpenGL_Model\Rendering\desk.h" />
+    <ClInclude Include="OpenGL_Model\Rendering\J0.h" />
+    <ClInclude Include="OpenGL_Model\Rendering\J1.h" />
+    <ClInclude Include="OpenGL_Model\Rendering\J2.h" />
+    <ClInclude Include="OpenGL_Model\Rendering\J3.h" />
+    <ClInclude Include="OpenGL_Model\Rendering\J4.h" />
+    <ClInclude Include="OpenGL_Model\Rendering\J5.h" />
+    <ClInclude Include="OpenGL_Model\Rendering\J6.h" />
+    <ClInclude Include="OpenGL_Model\Rendering\J7.h" />
+    <ClInclude Include="OpenGL_Model\Rendering\J8.h" />
+    <ClInclude Include="OpenGL_Model\Rendering\RE1_5601.h" />
+    <ClInclude Include="OpenGL_Model\Rendering\RE1_reduce.h" />
+    <ClInclude Include="Sensors\KinectSensor\KinectSensor.h" />
+    <ClInclude Include="ThreadControl.h" />
+    <ClInclude Include="Resource.h" />
+    <ClInclude Include="stdafx.h" />
+    <ClInclude Include="AtomManipulator.h" />
+    <ClInclude Include="AtomManipulatorDlg.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="res\AtomManipulator.ico" />
+    <None Include="res\AtomManipulator.rc2" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="AtomManipulator.rc" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+  <ProjectExtensions>
+    <VisualStudio>
+      <UserProperties RESOURCE_FILE="Robot Arm.rc" />
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>

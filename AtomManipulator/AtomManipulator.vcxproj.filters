@@ -1,0 +1,271 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="原始程式檔">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="原始程式檔\OpenGL">
+      <UniqueIdentifier>{0d591a54-e288-4159-b102-db41788726df}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="原始程式檔\GUI">
+      <UniqueIdentifier>{bc209dab-e659-4b39-9edc-6cacb430b465}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="標頭檔">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="資源檔">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav</Extensions>
+    </Filter>
+    <Filter Include="原始程式檔\OpenGL\OpenGl model">
+      <UniqueIdentifier>{54eb0d13-5764-4ac6-a3d7-b3214b9fd4e6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="原始程式檔\OpenGL\Arm model">
+      <UniqueIdentifier>{1e4d6834-888b-4d80-b9e0-548e9babd449}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="原始程式檔\OpenGL\Arm model\NewMat">
+      <UniqueIdentifier>{cbe52670-8898-4d7e-8208-14f313c299fc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="原始程式檔\Sensors">
+      <UniqueIdentifier>{40282bb3-42da-4393-b9b3-78f0c6ee7c89}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="原始程式檔\Sensors\KinectSensor">
+      <UniqueIdentifier>{67964ef4-a73b-4c46-a7ca-fac65587ff2d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="原始程式檔\MotionControl">
+      <UniqueIdentifier>{48e11950-2a0d-4a9b-8003-45b7bc7957bc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="原始程式檔\MotionControl\Math">
+      <UniqueIdentifier>{39fc21a0-24fd-45d1-9de7-d20834cc0e49}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="原始程式檔\MotionControl\KineChain">
+      <UniqueIdentifier>{199d7e69-26d3-4208-9b80-a267946ed709}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="原始程式檔\MotorControl">
+      <UniqueIdentifier>{357ad35c-6d37-4b4a-91de-df94ab3eb80f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="原始程式檔\MotorControl\SerialPort">
+      <UniqueIdentifier>{5a8e745f-1898-4c66-8b5e-33cbd689d628}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="mfcconsole.cpp">
+      <Filter>原始程式檔</Filter>
+    </ClCompile>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>原始程式檔</Filter>
+    </ClCompile>
+    <ClCompile Include="Sensors\KinectSensor\KinectSensor.cpp">
+      <Filter>原始程式檔\Sensors\KinectSensor</Filter>
+    </ClCompile>
+    <ClCompile Include="OpenGL_Model\newmat10\bandmat.cpp">
+      <Filter>原始程式檔\OpenGL\Arm model\NewMat</Filter>
+    </ClCompile>
+    <ClCompile Include="OpenGL_Model\newmat10\cholesky.cpp">
+      <Filter>原始程式檔\OpenGL\Arm model\NewMat</Filter>
+    </ClCompile>
+    <ClCompile Include="OpenGL_Model\newmat10\evalue.cpp">
+      <Filter>原始程式檔\OpenGL\Arm model\NewMat</Filter>
+    </ClCompile>
+    <ClCompile Include="OpenGL_Model\newmat10\fft.cpp">
+      <Filter>原始程式檔\OpenGL\Arm model\NewMat</Filter>
+    </ClCompile>
+    <ClCompile Include="OpenGL_Model\newmat10\hholder.cpp">
+      <Filter>原始程式檔\OpenGL\Arm model\NewMat</Filter>
+    </ClCompile>
+    <ClCompile Include="OpenGL_Model\newmat10\jacobi.cpp">
+      <Filter>原始程式檔\OpenGL\Arm model\NewMat</Filter>
+    </ClCompile>
+    <ClCompile Include="OpenGL_Model\newmat10\myexcept.cpp">
+      <Filter>原始程式檔\OpenGL\Arm model\NewMat</Filter>
+    </ClCompile>
+    <ClCompile Include="OpenGL_Model\newmat10\newfft.cpp">
+      <Filter>原始程式檔\OpenGL\Arm model\NewMat</Filter>
+    </ClCompile>
+    <ClCompile Include="OpenGL_Model\newmat10\newmat1.cpp">
+      <Filter>原始程式檔\OpenGL\Arm model\NewMat</Filter>
+    </ClCompile>
+    <ClCompile Include="OpenGL_Model\newmat10\newmat2.cpp">
+      <Filter>原始程式檔\OpenGL\Arm model\NewMat</Filter>
+    </ClCompile>
+    <ClCompile Include="OpenGL_Model\newmat10\newmat3.cpp">
+      <Filter>原始程式檔\OpenGL\Arm model\NewMat</Filter>
+    </ClCompile>
+    <ClCompile Include="OpenGL_Model\newmat10\newmat4.cpp">
+      <Filter>原始程式檔\OpenGL\Arm model\NewMat</Filter>
+    </ClCompile>
+    <ClCompile Include="OpenGL_Model\newmat10\newmat5.cpp">
+      <Filter>原始程式檔\OpenGL\Arm model\NewMat</Filter>
+    </ClCompile>
+    <ClCompile Include="OpenGL_Model\newmat10\newmat6.cpp">
+      <Filter>原始程式檔\OpenGL\Arm model\NewMat</Filter>
+    </ClCompile>
+    <ClCompile Include="OpenGL_Model\newmat10\newmat7.cpp">
+      <Filter>原始程式檔\OpenGL\Arm model\NewMat</Filter>
+    </ClCompile>
+    <ClCompile Include="OpenGL_Model\newmat10\newmat8.cpp">
+      <Filter>原始程式檔\OpenGL\Arm model\NewMat</Filter>
+    </ClCompile>
+    <ClCompile Include="OpenGL_Model\newmat10\newmat9.cpp">
+      <Filter>原始程式檔\OpenGL\Arm model\NewMat</Filter>
+    </ClCompile>
+    <ClCompile Include="OpenGL_Model\newmat10\newmatex.cpp">
+      <Filter>原始程式檔\OpenGL\Arm model\NewMat</Filter>
+    </ClCompile>
+    <ClCompile Include="OpenGL_Model\newmat10\newmatnl.cpp">
+      <Filter>原始程式檔\OpenGL\Arm model\NewMat</Filter>
+    </ClCompile>
+    <ClCompile Include="OpenGL_Model\newmat10\newmatrm.cpp">
+      <Filter>原始程式檔\OpenGL\Arm model\NewMat</Filter>
+    </ClCompile>
+    <ClCompile Include="OpenGL_Model\newmat10\solution.cpp">
+      <Filter>原始程式檔\OpenGL\Arm model\NewMat</Filter>
+    </ClCompile>
+    <ClCompile Include="OpenGL_Model\newmat10\sort.cpp">
+      <Filter>原始程式檔\OpenGL\Arm model\NewMat</Filter>
+    </ClCompile>
+    <ClCompile Include="OpenGL_Model\newmat10\submat.cpp">
+      <Filter>原始程式檔\OpenGL\Arm model\NewMat</Filter>
+    </ClCompile>
+    <ClCompile Include="OpenGL_Model\newmat10\svd.cpp">
+      <Filter>原始程式檔\OpenGL\Arm model\NewMat</Filter>
+    </ClCompile>
+    <ClCompile Include="OpenGL_Model\DH_matrix.cpp">
+      <Filter>原始程式檔\OpenGL\Arm model</Filter>
+    </ClCompile>
+    <ClCompile Include="OpenGL_Model\DH_Model.cpp">
+      <Filter>原始程式檔\OpenGL\Arm model</Filter>
+    </ClCompile>
+    <ClCompile Include="OpenGL_Model\OpenGLControl.cpp">
+      <Filter>原始程式檔\OpenGL</Filter>
+    </ClCompile>
+    <ClCompile Include="OpenGL_Model\OpenGLDevice.cpp">
+      <Filter>原始程式檔\OpenGL</Filter>
+    </ClCompile>
+    <ClCompile Include="OpenGL_Model\Draw_Function.cpp">
+      <Filter>原始程式檔\OpenGL</Filter>
+    </ClCompile>
+    <ClCompile Include="ThreadControl.cpp">
+      <Filter>原始程式檔</Filter>
+    </ClCompile>
+    <ClCompile Include="AtomManipulator.cpp">
+      <Filter>原始程式檔\GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="AtomManipulatorDlg.cpp">
+      <Filter>原始程式檔\GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="MotorControl\SerialPort\serial_port.cpp">
+      <Filter>原始程式檔\MotorControl\SerialPort</Filter>
+    </ClCompile>
+    <ClCompile Include="MotorControl\MotorControl.cpp">
+      <Filter>原始程式檔\MotorControl</Filter>
+    </ClCompile>
+    <ClCompile Include="MotionControl\KineChain\KineChain.cpp">
+      <Filter>原始程式檔\MotionControl\KineChain</Filter>
+    </ClCompile>
+    <ClCompile Include="MotionControl\Math\MatLib.cpp">
+      <Filter>原始程式檔\MotionControl\Math</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Resource.h">
+      <Filter>標頭檔</Filter>
+    </ClInclude>
+    <ClInclude Include="stdafx.h">
+      <Filter>標頭檔</Filter>
+    </ClInclude>
+    <ClInclude Include="Sensors\KinectSensor\KinectSensor.h">
+      <Filter>原始程式檔\Sensors\KinectSensor</Filter>
+    </ClInclude>
+    <ClInclude Include="OpenGL_Model\Rendering\BASE.h">
+      <Filter>原始程式檔\OpenGL\OpenGl model</Filter>
+    </ClInclude>
+    <ClInclude Include="OpenGL_Model\Rendering\desk.h">
+      <Filter>原始程式檔\OpenGL\OpenGl model</Filter>
+    </ClInclude>
+    <ClInclude Include="OpenGL_Model\Rendering\J0.h">
+      <Filter>原始程式檔\OpenGL\OpenGl model</Filter>
+    </ClInclude>
+    <ClInclude Include="OpenGL_Model\Rendering\J1.h">
+      <Filter>原始程式檔\OpenGL\OpenGl model</Filter>
+    </ClInclude>
+    <ClInclude Include="OpenGL_Model\Rendering\J2.h">
+      <Filter>原始程式檔\OpenGL\OpenGl model</Filter>
+    </ClInclude>
+    <ClInclude Include="OpenGL_Model\Rendering\J3.h">
+      <Filter>原始程式檔\OpenGL\OpenGl model</Filter>
+    </ClInclude>
+    <ClInclude Include="OpenGL_Model\Rendering\J4.h">
+      <Filter>原始程式檔\OpenGL\OpenGl model</Filter>
+    </ClInclude>
+    <ClInclude Include="OpenGL_Model\Rendering\J5.h">
+      <Filter>原始程式檔\OpenGL\OpenGl model</Filter>
+    </ClInclude>
+    <ClInclude Include="OpenGL_Model\Rendering\J6.h">
+      <Filter>原始程式檔\OpenGL\OpenGl model</Filter>
+    </ClInclude>
+    <ClInclude Include="OpenGL_Model\Rendering\J7.h">
+      <Filter>原始程式檔\OpenGL\OpenGl model</Filter>
+    </ClInclude>
+    <ClInclude Include="OpenGL_Model\Rendering\J8.h">
+      <Filter>原始程式檔\OpenGL\OpenGl model</Filter>
+    </ClInclude>
+    <ClInclude Include="OpenGL_Model\Rendering\RE1_5601.h">
+      <Filter>原始程式檔\OpenGL\OpenGl model</Filter>
+    </ClInclude>
+    <ClInclude Include="OpenGL_Model\Rendering\RE1_reduce.h">
+      <Filter>原始程式檔\OpenGL\OpenGl model</Filter>
+    </ClInclude>
+    <ClInclude Include="OpenGL_Model\DH_matrix.h">
+      <Filter>原始程式檔\OpenGL\Arm model</Filter>
+    </ClInclude>
+    <ClInclude Include="OpenGL_Model\DH_Model.h">
+      <Filter>原始程式檔\OpenGL\Arm model</Filter>
+    </ClInclude>
+    <ClInclude Include="OpenGL_Model\OpenGLControl.h">
+      <Filter>原始程式檔\OpenGL</Filter>
+    </ClInclude>
+    <ClInclude Include="OpenGL_Model\OpenGLDevice.h">
+      <Filter>原始程式檔\OpenGL</Filter>
+    </ClInclude>
+    <ClInclude Include="ThreadControl.h">
+      <Filter>標頭檔</Filter>
+    </ClInclude>
+    <ClInclude Include="AtomManipulator.h">
+      <Filter>原始程式檔\GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="AtomManipulatorDlg.h">
+      <Filter>原始程式檔\GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="MotorControl\SerialPort\serial_port.h">
+      <Filter>原始程式檔\MotorControl\SerialPort</Filter>
+    </ClInclude>
+    <ClInclude Include="MotorControl\SerialPort\util.h">
+      <Filter>原始程式檔\MotorControl\SerialPort</Filter>
+    </ClInclude>
+    <ClInclude Include="MotorControl\MotorControl.h">
+      <Filter>原始程式檔\MotorControl</Filter>
+    </ClInclude>
+    <ClInclude Include="MotionControl\KineChain\KineChain.h">
+      <Filter>原始程式檔\MotionControl\KineChain</Filter>
+    </ClInclude>
+    <ClInclude Include="MotionControl\Math\MatLib.h">
+      <Filter>原始程式檔\MotionControl\Math</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="res\AtomManipulator.ico">
+      <Filter>資源檔</Filter>
+    </None>
+    <None Include="res\AtomManipulator.rc2">
+      <Filter>資源檔</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="AtomManipulator.rc">
+      <Filter>資源檔</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+</Project>

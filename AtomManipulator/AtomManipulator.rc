@@ -1,0 +1,300 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// Chinese (Traditional, Taiwan) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_CHT)
+LANGUAGE LANG_CHINESE, SUBLANG_CHINESE_TRADITIONAL
+#pragma code_page(950)
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE 
+BEGIN
+    "#define _AFX_NO_SPLITTER_RESOURCES\r\n"
+    "#define _AFX_NO_OLE_RESOURCES\r\n"
+    "#define _AFX_NO_TRACKER_RESOURCES\r\n"
+    "#define _AFX_NO_PROPERTY_RESOURCES\r\n"
+    "\r\n"
+    "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_CHT)\r\n"
+    "LANGUAGE 4, 1\r\n"
+    "#pragma code_page(950)\r\n"
+    "#include ""res\\RobotArm.rc2""  // ?D Microsoft Visual C++ ?s?e1Lao!Me!P?\r\n"
+    "#include ""afxres.rc""     // ?D!PC?!M￠Do\r\n"
+    "#endif\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDR_MAINFRAME           ICON                    "res\\AtomManipulator.ico"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_ABOUTBOX DIALOGEX 0, 0, 235, 55
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "關於 AtomManipulator"
+FONT 9, "MS Shell Dlg", 0, 0, 0x1
+BEGIN
+    ICON            IDR_MAINFRAME,IDC_STATIC,11,17,20,20
+    LTEXT           "AtomManipulator 1.2 version",IDC_STATIC,40,10,119,8,SS_NOPREFIX
+    LTEXT           "Copyright (C) 2010",IDC_STATIC,40,25,119,8
+    DEFPUSHBUTTON   "確定",IDOK,178,7,50,16,WS_GROUP
+END
+
+IDD_ROBOTARM_DIALOG DIALOGEX 0, 0, 491, 375
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_MINIMIZEBOX | WS_MAXIMIZEBOX | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+EXSTYLE WS_EX_APPWINDOW
+CAPTION "AtomManipulator"
+FONT 9, "MS Shell Dlg", 0, 0, 0x1
+BEGIN
+    PUSHBUTTON      "Robot Reset",IDC_BUTTON5,423,77,50,17
+    CONTROL         "Draw E.E.Axis",IDC_CHECK3,"Button",BS_AUTOCHECKBOX | WS_DISABLED | WS_TABSTOP,423,122,53,10
+    CONTROL         "Static",IDC_Draw_Scene,"Static",SS_LEFTNOWORDWRAP | NOT WS_VISIBLE | WS_GROUP,2,1,412,367,WS_EX_DLGMODALFRAME | WS_EX_CLIENTEDGE
+    CONTROL         "Draw Ground",IDC_CHECK_DrawGround,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,423,133,53,10
+    GROUPBOX        "Drawing",IDC_STATIC,418,100,62,53
+    CONTROL         "Motor Action",IDC_CHECK_Motor,"Button",BS_AUTOCHECKBOX | WS_DISABLED | WS_TABSTOP,423,47,51,10
+    CONTROL         "Draw Robot",IDC_CHECK_DrawRealArm,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,423,111,54,10
+    PUSHBUTTON      "P2P Go",IDC_BUTTON11,425,271,50,16
+    PUSHBUTTON      "IK Init",IDC_BUTTON14,423,58,50,17,WS_DISABLED
+    EDITTEXT        IDC_EDIT_NumPts,442,169,36,12,ES_AUTOHSCROLL
+    LTEXT           "Pts:",IDC_STATIC,429,170,12,8
+    LTEXT           "X:",IDC_STATIC,434,185,8,8
+    LTEXT           "Y:",IDC_STATIC,434,198,8,8
+    LTEXT           "Z:",IDC_STATIC,434,213,8,8
+    EDITTEXT        IDC_EDIT_X,442,183,36,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_Y,442,197,36,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_Z,442,213,36,12,ES_AUTOHSCROLL
+    GROUPBOX        "Point To Point",IDC_STATIC,418,155,63,137
+    LTEXT           "RotX:",IDC_STATIC,423,229,18,8
+    LTEXT           "RotY:",IDC_STATIC,423,242,21,8
+    LTEXT           "RotZ:",IDC_STATIC,423,257,18,8
+    EDITTEXT        IDC_EDIT_RX,442,226,36,13,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_RY,442,241,36,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_RZ,442,255,36,12,ES_AUTOHSCROLL
+    CTEXT           "This is Atom.",IDC_STATUS,424,12,56,19
+    GROUPBOX        "Status",IDC_STATIC,418,1,62,33
+    GROUPBOX        "Arm",IDC_STATIC,418,38,62,59
+    PUSHBUTTON      "Maverick",IDC_MRVIC,425,333,50,14
+    CONTROL         "Check2",IDC_CHECK2,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,430,307,39,10
+END
+
+IDD_DIALOG1 DIALOGEX 0, 0, 151, 189
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_CHILD | WS_SYSMENU
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    CONTROL         "",IDC_CHECK_CIK,"Button",BS_AUTOCHECKBOX | BS_CENTER | BS_VCENTER | WS_TABSTOP,4,5,9,9,WS_EX_TRANSPARENT
+    EDITTEXT        IDC_EDIT_IKinput,65,27,78,14,ES_CENTER | ES_AUTOHSCROLL
+    CONTROL         "",IDC_SLIDER_IKinput_X,"msctls_trackbar32",TBS_NOTICKS | WS_TABSTOP,65,59,79,14,WS_EX_STATICEDGE
+    CONTROL         "",IDC_SLIDER_IKinput_Y,"msctls_trackbar32",TBS_NOTICKS | WS_TABSTOP,65,79,79,14,WS_EX_STATICEDGE
+    CONTROL         "",IDC_SLIDER_IKinput_Z,"msctls_trackbar32",TBS_NOTICKS | WS_TABSTOP,65,100,79,14,WS_EX_STATICEDGE
+    GROUPBOX        "    End-effector's Control",IDC_STATIC,0,4,147,119,BS_LEFT,WS_EX_CLIENTEDGE
+    EDITTEXT        IDC_EDIT_EEpos1,14,59,36,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_EEpos2,14,80,36,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_EEpos3,14,100,36,14,ES_AUTOHSCROLL
+    CONTROL         "",IDC_SPIN_EEpos1,"msctls_updown32",UDS_ARROWKEYS,50,59,11,14
+    CONTROL         "",IDC_SPIN_EEpos2,"msctls_updown32",UDS_ARROWKEYS,50,80,11,14
+    CONTROL         "",IDC_SPIN_EEpos3,"msctls_updown32",UDS_ARROWKEYS,50,100,11,14
+    LTEXT           "Position                     Rotation",IDC_STATIC,24,48,96,8
+    LTEXT           "X:",IDC_STATIC,5,61,8,8
+    LTEXT           "Y:",IDC_STATIC,5,82,8,8
+    LTEXT           "Z:",IDC_STATIC,5,101,8,8
+    CONTROL         "",IDC_SLIDER4,"msctls_trackbar32",WS_TABSTOP,4,22,55,13
+    LTEXT           "1    .1   .01  .001",IDC_STATIC,7,34,55,8
+    PUSHBUTTON      "Right Arm",IDC_OCCUPIED_ARM,94,6,50,11,0,WS_EX_TRANSPARENT
+    GROUPBOX        "Record Action",IDC_STATIC,0,126,69,58,0,WS_EX_CLIENTEDGE
+    PUSHBUTTON      "Motion",IDC_RECORD_MOTION,7,139,50,12
+    PUSHBUTTON      "Grasp",IDC_RECORD_GRASP,7,153,50,12
+    PUSHBUTTON      "Put on",IDC_RECORD_PUTON,7,168,50,12
+    PUSHBUTTON      "Save Script",IDC_BUTTON_SAVESCRIPT,83,141,50,14
+    PUSHBUTTON      "Load Script",IDC_BUTTON_LOADSCRIPT,83,158,50,14
+    GROUPBOX        "Static",IDC_STATIC,77,127,70,57,0,WS_EX_STATICEDGE
+END
+
+IDD_DIALOG2 DIALOGEX 0, 0, 149, 189
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_CHILD | WS_SYSMENU
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    CONTROL         "Scenery",IDC_CHECK_Scenery,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,11,140,42,10
+    CONTROL         "Obstacle",IDC_CHECK_Obstalce,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,11,150,50,10
+    PUSHBUTTON      "Load Model",IDC_BUTTON_LoadModel,9,162,52,14,WS_DISABLED
+    GROUPBOX        "Load 3D model",IDC_STATIC,2,128,65,54,0,WS_EX_CLIENTEDGE
+    PUSHBUTTON      "Laod Scenario",IDC_BUTTON_LoadScenario,86,161,54,14
+    PUSHBUTTON      "Save Scenario",IDC_BUTTON_SaveScenario,86,142,54,14
+    GROUPBOX        "Scenario",IDC_STATIC,76,128,70,54,0,WS_EX_CLIENTEDGE
+    COMBOBOX        IDC_COMBO_Model2,11,21,53,150,CBS_DROPDOWNLIST | WS_DISABLED | WS_VSCROLL | WS_TABSTOP
+    PUSHBUTTON      "Delete",IDC_BUTTON_DelModel,81,103,50,11
+    EDITTEXT        IDC_EDIT_MoveX,16,50,38,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_MoveY,16,67,38,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_MoveZ,16,84,38,14,ES_AUTOHSCROLL
+    CONTROL         "",IDC_SPIN1,"msctls_updown32",UDS_ARROWKEYS,55,50,10,14
+    CONTROL         "",IDC_SPIN2,"msctls_updown32",UDS_ARROWKEYS,55,67,10,14
+    CONTROL         "",IDC_SPIN3,"msctls_updown32",UDS_ARROWKEYS,55,84,10,14
+    CONTROL         "",IDC_SLIDER_Rx,"msctls_trackbar32",TBS_BOTH | TBS_NOTICKS | WS_TABSTOP,68,51,74,12
+    CONTROL         "",IDC_SLIDER_Ry,"msctls_trackbar32",TBS_BOTH | TBS_NOTICKS | WS_TABSTOP,68,68,74,12
+    CONTROL         "",IDC_SLIDER_Rz,"msctls_trackbar32",TBS_BOTH | TBS_NOTICKS | WS_TABSTOP,68,85,74,12
+    EDITTEXT        IDC_EDIT_ROTA,73,20,65,14,ES_CENTER | ES_AUTOHSCROLL
+    LTEXT           " Position                     Rotation",IDC_STATIC,24,38,97,8
+    LTEXT           "X:",IDC_STATIC,8,52,8,8
+    LTEXT           "Y:",IDC_STATIC,8,69,8,8
+    LTEXT           "Z:",IDC_STATIC,8,86,8,8
+    CONTROL         "",IDC_SLIDER_Scale,"msctls_trackbar32",WS_TABSTOP,10,100,56,13
+    LTEXT           "1   .1   .01   .001",IDC_STATIC,14,112,58,8
+    GROUPBOX        "Move 3D model",IDC_STATIC,2,7,144,116,0,WS_EX_CLIENTEDGE
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 1,0,0,1
+ PRODUCTVERSION 1,0,0,1
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x4L
+ FILETYPE 0x1L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "040403b6"
+        BEGIN
+            VALUE "CompanyName", "TODO: <公司名稱>"
+            VALUE "FileDescription", "TODO: <檔案說明>"
+            VALUE "FileVersion", "1.0.0.1"
+            VALUE "InternalName", "AtomManipulator.exe"
+            VALUE "LegalCopyright", "TODO: (c) <公司名稱>.  All rights reserved."
+            VALUE "OriginalFilename", "AtomManipulator.exe"
+            VALUE "ProductName", "TODO: <產品名稱>"
+            VALUE "ProductVersion", "1.0.0.1"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x404, 950
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO
+BEGIN
+    IDD_ABOUTBOX, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 228
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 48
+    END
+
+    IDD_ROBOTARM_DIALOG, DIALOG
+    BEGIN
+        LEFTMARGIN, 2
+        RIGHTMARGIN, 486
+        TOPMARGIN, 1
+        BOTTOMMARGIN, 368
+    END
+
+    IDD_DIALOG1, DIALOG
+    BEGIN
+        RIGHTMARGIN, 147
+        TOPMARGIN, 4
+        BOTTOMMARGIN, 184
+    END
+
+    IDD_DIALOG2, DIALOG
+    BEGIN
+        LEFTMARGIN, 2
+        RIGHTMARGIN, 146
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 182
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE
+BEGIN
+    IDS_ABOUTBOX            "關於 AtomManipulator(&A)..."
+END
+
+#endif    // Chinese (Traditional, Taiwan) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+#define _AFX_NO_SPLITTER_RESOURCES
+#define _AFX_NO_OLE_RESOURCES
+#define _AFX_NO_TRACKER_RESOURCES
+#define _AFX_NO_PROPERTY_RESOURCES
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_CHT)
+LANGUAGE 4, 1
+#pragma code_page(950)
+#include "res\AtomManipulator.rc2"  // ?D Microsoft Visual C++ ?s?e1Lao﹐e·?
+#include "afxres.rc"     // ?D·C?﹐￥o
+#endif
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

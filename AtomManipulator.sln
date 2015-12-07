@@ -1,0 +1,23 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "AtomManipulator", "AtomManipulator\AtomManipulator.vcxproj", "{67F1F1B2-8070-4CC6-8875-BC9498391E92}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+		Template|Win32 = Template|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{67F1F1B2-8070-4CC6-8875-BC9498391E92}.Debug|Win32.ActiveCfg = Release|Win32
+		{67F1F1B2-8070-4CC6-8875-BC9498391E92}.Debug|Win32.Build.0 = Release|Win32
+		{67F1F1B2-8070-4CC6-8875-BC9498391E92}.Release|Win32.ActiveCfg = Release|Win32
+		{67F1F1B2-8070-4CC6-8875-BC9498391E92}.Release|Win32.Build.0 = Release|Win32
+		{67F1F1B2-8070-4CC6-8875-BC9498391E92}.Template|Win32.ActiveCfg = Template|Win32
+		{67F1F1B2-8070-4CC6-8875-BC9498391E92}.Template|Win32.Build.0 = Template|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
