@@ -105,6 +105,8 @@
 #define IDC_AVOID_DLR                   1081
 #define IDC_STATUS                      1082
 #define IDC_CHECK12                     1083
+#define IDC_CHECK6                      1084
+#define IDC_ROBOT_MODE                  1084
 
 // Next default values for new objects
 // 
@@ -112,7 +114,7 @@
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_NEXT_RESOURCE_VALUE        132
 #define _APS_NEXT_COMMAND_VALUE         32771
-#define _APS_NEXT_CONTROL_VALUE         1084
+#define _APS_NEXT_CONTROL_VALUE         1085
 #define _APS_NEXT_SYMED_VALUE           101
 #endif
 #endif

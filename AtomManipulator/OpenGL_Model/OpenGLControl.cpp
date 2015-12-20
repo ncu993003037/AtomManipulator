@@ -25,14 +25,8 @@
 static char THIS_FILE[] = __FILE__;
 #endif
 
-#ifndef pi
-#define pi 3.14159
-#endif
-
 /////////////////////////////////////////////////////////////////////////////
 // COpenGLControl
-
-double cnt = 0.0;
 
 COpenGLControl::COpenGLControl()
 : r_mouse_button(false)
@@ -50,6 +44,7 @@ COpenGLControl::COpenGLControl()
 , resetCheck(0)
 , robotRunningCheck(0)
 , checkObs(0)
+, RArm("OpenGL_Model\\DHParameter.txt")
 {
 	dc = NULL;
 	rotation = 0.0f;

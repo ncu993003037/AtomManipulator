@@ -54,6 +54,7 @@ public:
 	
 	CButton DrawEE_Axis;
 	CButton Motor_Action_Btn;
+	CButton Robot_Mode_Btn;
 
 	int Robot_Mode;
 
@@ -75,4 +76,5 @@ public:
 	afx_msg void OnBnClickedButton5();
 	afx_msg void OnBnClickedCheck3();
 
+	afx_msg void OnBnClickedRobotMode();
 };

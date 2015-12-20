@@ -10,9 +10,9 @@ namespace motion
 	KineChain::KineChain(int DOF_)
 		: DOF(DOF_), 
 		t_base(NULL),
-		nonempty_link(NULL),
-		_motors(NULL),
-		_if_set_motor_ptr(false)
+		nonempty_link(NULL)
+		//_motors(nullptr)
+		//_if_set_motor_ptr(false)
 	{
 		// joint
 		q = new double [DOF]; 
@@ -54,7 +54,6 @@ namespace motion
 		delete [] DH;
 		delete [] Jac_k;
 		delete [] nonempty_link;
-
 
 		if (t_base != NULL)
 			delete [] t_base;
@@ -240,8 +239,8 @@ namespace motion
 			Mat_xy_plu (f_o+9*n+9, f_p+3*(n-1), f_p+3*n, 3) ; //  p2 = p2_tmp + p1	(p2_tmp is stored in f_o+9*n+9)		
 		}
 
-		if (_if_set_motor_ptr)
-			_motors->SetMotorInput((float *)q);
+		//if (_if_set_motor_ptr)
+			//_motors->SetMotorInput((float *)q);
 	}
 
 	void KineChain::compute_Euler_ang(double* RotM, double* EulerAng)

@@ -7,15 +7,20 @@
 // OpenGLControl.h : Header
 
 #include "ThreadControl.h"
-#include "OpenGL_Model/OpenGLDevice.h"
 
+// Rendering
+#include "OpenGL_Model/DH_Model.h"
+#include "OpenGL_Model/OpenGLDevice.h"
 #include <OpenGL_Model/GL/gl.h>
 #include <OpenGL_Model/GL/glu.h>
 #include <OpenGL_Model/GL/glut.h>
 #include <OpenGL_Model/GL/glaux.h>
+
 #include "atltypes.h"
 #include <vector>
 #include <fstream>
+
+struct Dimension { float *Pos; };
 
 class COpenGLControl : public CWnd
 {
@@ -144,6 +149,10 @@ public:
 	float finalInput[6], sixjoint[7];
 	int initIKcheck, resetCheck, robotRunningCheck;
 	int checkObs;
+
+	float RAini_theta[ROBOT_DOF+1]; //手臂起始位置
+	std::vector <Dimension> RActionPath;
+	ArmKinematic RArm;
 };
 
 #endif // AFX_OPENGLCONTROL_H__52A6B63B_01A2_449D_8691_1FF59EECAB71__INCLUDED_

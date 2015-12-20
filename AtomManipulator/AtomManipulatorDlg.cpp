@@ -54,6 +54,7 @@ void CRobotArmDlg::DoDataExchange(CDataExchange* pDX)
 	CDialog::DoDataExchange(pDX);
 	DDX_Control(pDX, IDC_CHECK3, DrawEE_Axis);
 	DDX_Control(pDX, IDC_CHECK_Motor  , Motor_Action_Btn);
+	DDX_Control(pDX, IDC_ROBOT_MODE  , Robot_Mode_Btn);
 
 	DDX_Control(pDX, IDC_EDIT_NumPts, m_edCtrl_NumPts);
 	DDX_Control(pDX, IDC_EDIT_X, m_edCtrl_X);
@@ -66,6 +67,7 @@ void CRobotArmDlg::DoDataExchange(CDataExchange* pDX)
 	DDX_Check(pDX, IDC_CHECK_DrawGround, openGLControl.CDrawGround);
 	DDX_Check(pDX, IDC_CHECK_DrawRealArm, openGLControl.DrawCurRArm);
 	DDX_Check(pDX, IDC_CHECK2, openGLControl.checkObs);
+	DDX_Check(pDX, IDC_ROBOT_MODE, Robot_Mode);
 
 	DDX_Text(pDX, IDC_EDIT_X, openGLControl.StaticX);
 	DDX_Text(pDX, IDC_EDIT_Y, openGLControl.StaticY);
@@ -73,7 +75,6 @@ void CRobotArmDlg::DoDataExchange(CDataExchange* pDX)
 	DDX_Text(pDX, IDC_EDIT_RX, openGLControl.StaticRX);
 	DDX_Text(pDX, IDC_EDIT_RY, openGLControl.StaticRY);
 	DDX_Text(pDX, IDC_EDIT_RZ, openGLControl.StaticRZ);
-
 	DDX_Text(pDX, IDC_EDIT_NumPts, openGLControl.NumPts);
 }
 
@@ -98,6 +99,7 @@ BEGIN_MESSAGE_MAP(CRobotArmDlg, CDialog)
 	ON_BN_CLICKED(IDC_MRVIC, &CRobotArmDlg::OnBnClickedMrvic)
 	ON_BN_CLICKED(IDC_CHECK2, &CRobotArmDlg::OnBnClickedCheck2)
 	ON_BN_CLICKED(IDC_CHECK_DrawRealArm, &CRobotArmDlg::OnBnClickedCheckDrawrealarm)
+	ON_BN_CLICKED(IDC_ROBOT_MODE, &CRobotArmDlg::OnBnClickedRobotMode)
 END_MESSAGE_MAP()
 
 
@@ -142,10 +144,7 @@ BOOL CRobotArmDlg::OnInitDialog()
 
 	CheckDrawGround = &openGLControl.CDrawGround;
 
-	Robot_Mode = AtomManipulatorInitialization();
-
-	if (Robot_Mode)
-		Motor_Action_Btn.EnableWindow(TRUE);
+	AtomManipulatorInitialization();
 
 	m_edCtrl_NumPts.SetWindowTextA("100");
 	m_edCtrl_X.SetWindowTextA("0.5");
@@ -164,11 +163,6 @@ BOOL CRobotArmDlg::OnInitDialog()
 	m_edCtrl_RY.SetWindowTextA(str);
 	str.Format("%.2f",openGLControl.rpZ);
 	m_edCtrl_RZ.SetWindowTextA(str);
-
-	if (Robot_Mode)
-		SetDlgItemText(IDC_STATUS, "[Real-robot Mode] Atom is ready to GO.");
-	else
-		SetDlgItemText(IDC_STATUS, "[Simulation Mode] Atom is ready to GO.");
 
 	// TODO: 在此加入額外的初始設定
 	return TRUE;  // 傳回 TRUE，除非您對控制項設定焦點
@@ -251,10 +245,19 @@ void CRobotArmDlg::OnBnClickedCheckMotor()
 {
 	// TODO: Add your control notification handler code here
 	UpdateData(true);	
-#if MOTOR
 	openGLControl.MotorAction = Motor_Action_Btn.GetCheck();
-	Motors.SetMotorAction(Motor_Action_Btn.GetCheck());
-#endif
+	//atom_motors->SetMotorAction(Motor_Action_Btn.GetCheck());
+
+	if (openGLControl.MotorAction)
+	{
+		Robot_Mode_Btn.EnableWindow(FALSE);
+		SetDlgItemText(IDC_STATUS, "[Real-robot Mode] Atom starts rolling.");
+	}
+	else
+	{
+		Robot_Mode_Btn.EnableWindow(TRUE);
+		SetDlgItemText(IDC_STATUS, "[Real-robot Mode] Atom stops rolling.");
+	}
 }
 
 void CRobotArmDlg::OnEnChangeEditNumpts()
@@ -572,3 +575,34 @@ void CRobotArmDlg::OnBnClickedMrvic()
 //
 //}
 
+
+
+void CRobotArmDlg::OnBnClickedRobotMode()
+{
+	// TODO: Add your control notification handler code here
+	UpdateData(true);
+
+	//atom_motors.reset();
+	 
+	//if (Robot_Mode) {
+	//	SetDlgItemText(IDC_STATUS, "[Real-robot Mode] Connecting....");
+
+	//	MotorControllerOpen(true);
+
+	//	if (atom_motors->GetThreadOpened()) 
+	//	{
+	//		Motor_Action_Btn.EnableWindow(TRUE);
+	//		SetDlgItemText(IDC_STATUS, "[Real-robot Mode] Atom is ready to roll.");
+	//	} else {
+	//		Robot_Mode_Btn.SetCheck(0);
+	//		SetDlgItemText(IDC_STATUS, "[Real-robot Mode] Fail to connect motors..");
+	//		Sleep(1000);
+	//		SetDlgItemText(IDC_STATUS, "[Simulation Mode] Atom is ready to roll.");
+	//	}
+	//} else {
+	//	MotorControllerOpen(false);
+
+	//	Motor_Action_Btn.EnableWindow(FALSE);
+	//	SetDlgItemText(IDC_STATUS, "[Simulation Mode] Atom is ready to roll.");
+	//}
+}

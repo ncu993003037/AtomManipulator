@@ -46,6 +46,9 @@
     <Filter Include="原始程式檔\MotorControl">
       <UniqueIdentifier>{357ad35c-6d37-4b4a-91de-df94ab3eb80f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="原始程式檔\MotorControl\Faulhaber">
+      <UniqueIdentifier>{35f66046-ae9e-44da-8ab0-8944922528dd}</UniqueIdentifier>
+    </Filter>
     <Filter Include="原始程式檔\MotorControl\SerialPort">
       <UniqueIdentifier>{5a8e745f-1898-4c66-8b5e-33cbd689d628}</UniqueIdentifier>
     </Filter>
@@ -159,14 +162,20 @@
     <ClCompile Include="MotorControl\SerialPort\serial_port.cpp">
       <Filter>原始程式檔\MotorControl\SerialPort</Filter>
     </ClCompile>
-    <ClCompile Include="MotorControl\MotorControl.cpp">
-      <Filter>原始程式檔\MotorControl</Filter>
-    </ClCompile>
     <ClCompile Include="MotionControl\KineChain\KineChain.cpp">
       <Filter>原始程式檔\MotionControl\KineChain</Filter>
     </ClCompile>
     <ClCompile Include="MotionControl\Math\MatLib.cpp">
       <Filter>原始程式檔\MotionControl\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="MotorControl\MotorController.cpp">
+      <Filter>原始程式檔\MotorControl</Filter>
+    </ClCompile>
+    <ClCompile Include="MotorControl\FaulhaberController\FaulhaberController.cpp">
+      <Filter>原始程式檔\MotorControl\Faulhaber</Filter>
+    </ClCompile>
+    <ClCompile Include="MotorControl\MotorControlInterface.cpp">
+      <Filter>原始程式檔\MotorControl</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -245,14 +254,20 @@
     <ClInclude Include="MotorControl\SerialPort\util.h">
       <Filter>原始程式檔\MotorControl\SerialPort</Filter>
     </ClInclude>
-    <ClInclude Include="MotorControl\MotorControl.h">
-      <Filter>原始程式檔\MotorControl</Filter>
-    </ClInclude>
     <ClInclude Include="MotionControl\KineChain\KineChain.h">
       <Filter>原始程式檔\MotionControl\KineChain</Filter>
     </ClInclude>
     <ClInclude Include="MotionControl\Math\MatLib.h">
       <Filter>原始程式檔\MotionControl\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="MotorControl\MotorController.h">
+      <Filter>原始程式檔\MotorControl</Filter>
+    </ClInclude>
+    <ClInclude Include="MotorControl\FaulhaberController\FaulhaberController.h">
+      <Filter>原始程式檔\MotorControl\Faulhaber</Filter>
+    </ClInclude>
+    <ClInclude Include="MotorControl\MotorControlInterface.h">
+      <Filter>原始程式檔\MotorControl</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
