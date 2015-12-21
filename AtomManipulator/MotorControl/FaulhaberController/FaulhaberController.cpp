@@ -27,12 +27,12 @@ namespace motor
 
 				if(!check)
 				{
-					printf("Error [Motor]: %s initial fail\n",COMport.c_str());
+					printf("Error [Motor]: %s (%d) initial fail\n",COMport.c_str(),m_baudrate);
 					return 0;
 				}
 				else
 				{
-					printf("Info [Motor]: %s Initial success\n",COMport.c_str());
+					printf("Info [Motor]: %s (%d) Initial success\n",COMport.c_str(),m_baudrate);
 					return 1;
 				}
 			}
@@ -47,11 +47,11 @@ namespace motor
 
 				printf("%s ",write_command.c_str());
 
-				if( !_sport._write((uchar* )write_command.c_str(),write_command.length()) )
-				{
-					printf("Error [Motor]: Cannot write command to motor %d suddenly\n",index);
-					system("pause");
-				}
+				//if( !_sport._write((uchar* )write_command.c_str(),write_command.length()) )
+				//{
+				//	printf("Error [Motor]: Cannot write command to motor %d suddenly\n",index);
+				//	system("pause");
+				//}
 			}
 		}; // class DSPdriver
 

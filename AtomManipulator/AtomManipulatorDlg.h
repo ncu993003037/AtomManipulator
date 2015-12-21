@@ -2,6 +2,7 @@
 //
 
 #pragma once
+#include "Global_Instances.h"
 #include "OpenGL_Model\OpenGLControl.h"
 
 #include "afxcmn.h"

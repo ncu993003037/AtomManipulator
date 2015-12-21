@@ -10,6 +10,7 @@ namespace motor
 		_gThreadOpened(false),
 		_motor_action_go(false)
 	{
+		//printf("%d %d %d\n",_config._DOF_,_config._expected_baud_rate_,_config._sleep_time_micro_sec_);
 	}
 
 	MotorController::~MotorController()
@@ -93,14 +94,14 @@ namespace motor
 			_ElapsedMicroseconds.QuadPart *= 1000000; // Micro-seconds
 			_ElapsedMicroseconds.QuadPart /= _nFreq.QuadPart;
 
-			if (_ElapsedMicroseconds.QuadPart >= _config._sleep_time_micro_sec_)
-			{
+			//if (_ElapsedMicroseconds.QuadPart >= _config._sleep_time_micro_sec_)
+			//{
 				printf("_ElapsedMicroseconds: %d\n",_ElapsedMicroseconds.QuadPart);
 				QueryPerformanceCounter(&_StartTime);
 
 				if(_motor_action_go)
 					WriteCommand(_motor_input);
-			}
+			//}
 
 			usleep(_config._sleep_time_micro_sec_);
 		}

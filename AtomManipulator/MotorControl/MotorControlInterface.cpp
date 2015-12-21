@@ -4,14 +4,22 @@
 
 namespace motor
 {
-	MotorControlInterface::MotorControlInterface(CL_Name &name, CL_Config &config)
-		: _name(name),
-		_config(config)
+	void MotorControlInterface::CreateInstancePtr(const CL_Name &name, const CL_Config &config)
 	{
-		CreateInstancePtr();
+		switch(name)
+		{
+		case FAULHABER: {
+			instance.reset(new FaulhaberController(config));
+			}
+		}
 	}
 
-	MotorControlInterface::~MotorControlInterface()
+	std::shared_ptr<MotorController>	MotorControlInterface::GetInstancePtr()
+	{
+		return instance;
+	}
+
+	void MotorControlInterface::ResetInstancePtr()
 	{
 		if (instance)
 		{
@@ -23,20 +31,5 @@ namespace motor
 			else
 				instance.reset();
 		}
-	}
-	
-	void MotorControlInterface::CreateInstancePtr()
-	{
-		switch(_name)
-		{
-		case FAULHABER: {
-			instance.reset(new FaulhaberController(_config));
-			}
-		}
-	}
-
-	std::shared_ptr<MotorController>	MotorControlInterface::GetInstancePtr()
-	{
-		return instance;
 	}
 }/* namespace motor */

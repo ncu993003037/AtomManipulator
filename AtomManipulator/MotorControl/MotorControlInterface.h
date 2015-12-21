@@ -13,19 +13,18 @@ namespace motor
 
 	class MotorControlInterface
 	{
-		explicit MotorControlInterface(CL_Name &name, CL_Config &config);
-		~MotorControlInterface();
-
 	public:
+		static MotorControlInterface& GetMotorControlInterface()
+		{
+			static MotorControlInterface _mci;
+			return _mci;
+		}
+
+		void CreateInstancePtr(const CL_Name &name, const CL_Config &config);
 		std::shared_ptr<MotorController>	GetInstancePtr();
+		void ResetInstancePtr();
 
 	private:
-		void CreateInstancePtr();
-
-	private:
-		const CL_Name _name;
-		const CL_Config _config;
-
 		std::shared_ptr<MotorController> instance;
 	};
 }/* namespace motor */

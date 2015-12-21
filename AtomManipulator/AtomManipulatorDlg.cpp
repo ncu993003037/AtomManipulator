@@ -246,7 +246,10 @@ void CRobotArmDlg::OnBnClickedCheckMotor()
 	// TODO: Add your control notification handler code here
 	UpdateData(true);	
 	openGLControl.MotorAction = Motor_Action_Btn.GetCheck();
-	//atom_motors->SetMotorAction(Motor_Action_Btn.GetCheck());
+	
+	std::shared_ptr<motor::MotorController> atom_motors 
+		= motor::MotorControlInterface::GetMotorControlInterface().GetInstancePtr();
+	atom_motors->SetMotorAction(Motor_Action_Btn.GetCheck());
 
 	if (openGLControl.MotorAction)
 	{
@@ -581,28 +584,36 @@ void CRobotArmDlg::OnBnClickedRobotMode()
 {
 	// TODO: Add your control notification handler code here
 	UpdateData(true);
-
-	//atom_motors.reset();
 	 
-	//if (Robot_Mode) {
-	//	SetDlgItemText(IDC_STATUS, "[Real-robot Mode] Connecting....");
+	if (Robot_Mode) {
+		CL_Config atom_motor_config;
+		atom_motor_config._DOF_ = ROBOT_DOF;
+		atom_motor_config._expected_baud_rate_ = 115200;
+		atom_motor_config._sleep_time_micro_sec_ = 6000;
+		MotorControlInterface::GetMotorControlInterface()
+			.CreateInstancePtr(FAULHABER, atom_motor_config);
 
-	//	MotorControllerOpen(true);
+		std::shared_ptr<MotorController> atom_motors 
+			= MotorControlInterface::GetMotorControlInterface().GetInstancePtr();
 
-	//	if (atom_motors->GetThreadOpened()) 
-	//	{
-	//		Motor_Action_Btn.EnableWindow(TRUE);
-	//		SetDlgItemText(IDC_STATUS, "[Real-robot Mode] Atom is ready to roll.");
-	//	} else {
-	//		Robot_Mode_Btn.SetCheck(0);
-	//		SetDlgItemText(IDC_STATUS, "[Real-robot Mode] Fail to connect motors..");
-	//		Sleep(1000);
-	//		SetDlgItemText(IDC_STATUS, "[Simulation Mode] Atom is ready to roll.");
-	//	}
-	//} else {
-	//	MotorControllerOpen(false);
+		SetDlgItemText(IDC_STATUS, "[Real-robot Mode] Connecting....");
 
-	//	Motor_Action_Btn.EnableWindow(FALSE);
-	//	SetDlgItemText(IDC_STATUS, "[Simulation Mode] Atom is ready to roll.");
-	//}
+		atom_motors->Launch();
+
+		if (atom_motors->GetThreadOpened()) 
+		{
+			Motor_Action_Btn.EnableWindow(TRUE);
+			SetDlgItemText(IDC_STATUS, "[Real-robot Mode] Atom is ready to roll.");
+		} else {
+			Robot_Mode_Btn.SetCheck(0);
+			SetDlgItemText(IDC_STATUS, "[Real-robot Mode] Fail to connect motors..");
+			Sleep(1000);
+			SetDlgItemText(IDC_STATUS, "[Simulation Mode] Atom is ready to roll.");
+		}
+	} else {
+		MotorControlInterface::GetMotorControlInterface().ResetInstancePtr();
+
+		Motor_Action_Btn.EnableWindow(FALSE);
+		SetDlgItemText(IDC_STATUS, "[Simulation Mode] Atom is ready to roll.");
+	}
 }

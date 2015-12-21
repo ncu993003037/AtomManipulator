@@ -4,10 +4,7 @@
 #define _KINECHAIN_ 
 
 
-
-//#include <cstring>
-//#include <cmath>
-#include "MotorControl/MotorControlInterface.h"
+//#include "MotorControl/MotorControlInterface.h"
 #include "MotionControl/Math/MatLib.h"
 #include <fstream>
 #include <string>
@@ -27,7 +24,7 @@ namespace motion
 	class KineChain
 	{
 	public:
-		explicit KineChain(int DOF_); // initialize with zero DH parameter	
+		KineChain(int DOF_); // initialize with zero DH parameter	
 		~KineChain(void);
 
 		const int DOF;

@@ -317,7 +317,7 @@ void COpenGLControl::DrawGLScene()
 
 
 	// Robot sticks
-	robot.draw_stick();
+	//robot.draw_stick();
 
 	glPushMatrix();
 		glTranslatef( 0., 0., 0.);

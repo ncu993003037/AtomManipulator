@@ -132,7 +132,6 @@
     <ClCompile Include="MotorControl\MotorControlInterface.cpp" />
     <ClCompile Include="MotorControl\MotorController.cpp" />
     <ClCompile Include="MotorControl\SerialPort\serial_port.cpp" />
-    <ClCompile Include="ThreadControl.cpp" />
     <ClCompile Include="mfcconsole.cpp" />
     <ClCompile Include="OpenGL_Model\DH_matrix.cpp" />
     <ClCompile Include="OpenGL_Model\DH_Model.cpp" />
@@ -197,7 +196,7 @@
     <ClInclude Include="OpenGL_Model\Rendering\RE1_5601.h" />
     <ClInclude Include="OpenGL_Model\Rendering\RE1_reduce.h" />
     <ClInclude Include="Sensors\KinectSensor\KinectSensor.h" />
-    <ClInclude Include="ThreadControl.h" />
+    <ClInclude Include="Global_Instances.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="AtomManipulator.h" />

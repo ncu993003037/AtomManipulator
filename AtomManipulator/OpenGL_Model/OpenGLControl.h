@@ -6,8 +6,6 @@
 #endif // _MSC_VER > 1000
 // OpenGLControl.h : Header
 
-#include "ThreadControl.h"
-
 // Rendering
 #include "OpenGL_Model/DH_Model.h"
 #include "OpenGL_Model/OpenGLDevice.h"
@@ -150,7 +148,7 @@ public:
 	int initIKcheck, resetCheck, robotRunningCheck;
 	int checkObs;
 
-	float RAini_theta[ROBOT_DOF+1]; //手臂起始位置
+	float RAini_theta[7+1]; //手臂起始位置
 	std::vector <Dimension> RActionPath;
 	ArmKinematic RArm;
 };
