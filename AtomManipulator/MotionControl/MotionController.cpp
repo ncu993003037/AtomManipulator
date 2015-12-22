@@ -1,4 +1,4 @@
-#include "MoPac/MotionController.h"
+#include "MotionControl/MotionController.h"
 
 
 
@@ -127,10 +127,8 @@ namespace motion
 		}; // class USVt
 		/////////////////////////////////////////////////////
 
-		MotionController::MotionController(KineChain *robot_)
-			:	_robot(robot_),
-				DOF(robot_->DOF),
-				Bp(1), Kp(1), Bo(1), Ko(1), Bq(1), Kq(1),
+		MotionController::MotionController()
+			: Bp(1), Kp(1), Bo(1), Ko(1), Bq(1), Kq(1),
 				//q(robot_->q), qd(robot_->qd), 
 			//	//o_n_9 (robot_.f_o + 9 *robot_.DOF),
 			//	//p_n(robot_.f_p + 3 * robot_.DOF),

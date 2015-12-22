@@ -14,14 +14,14 @@ namespace motor
 	class MotorControlInterface
 	{
 	public:
-		static MotorControlInterface& GetMotorControlInterface()
+		static MotorControlInterface& GetMotorControlInterface() // Singleton
 		{
 			static MotorControlInterface _mci;
 			return _mci;
 		}
 
-		void CreateInstancePtr(const CL_Name &name, const CL_Config &config);
-		std::shared_ptr<MotorController>	GetInstancePtr();
+		void CreateInstancePtr(const CL_Name &name, const CL_Config &config); // Factory method
+		std::shared_ptr<MotorController>	GetInstancePtr(); // the shared pointer is more safe for destruction
 		void ResetInstancePtr();
 
 	private:

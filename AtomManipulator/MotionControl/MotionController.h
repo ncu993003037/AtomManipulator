@@ -5,13 +5,11 @@
 #include <time.h>
 #include <Windows.h>
 
-#include "MoPaC/KineChain.h"
-#include "MoPac/Math/MatLib.h"
+#include "MotionControl/KineChain/KineChain.h"
+#include "MotionControl/Math/MatLib.h"
 
 namespace motion
 {
-	class KineChain;
-
 	namespace control
 	{
 		class USVt;
@@ -19,8 +17,10 @@ namespace motion
 		class MotionController
 		{
 		public:
-			explicit MotionController(KineChain *robot_);
+			explicit MotionController(void);
 			~MotionController(void);
+
+
 
 			void set_p_r (double *p_r);
 			void set_pd_r (double *pd_r);
@@ -58,11 +58,11 @@ namespace motion
 			void update_CarVel(void);
 
 		private:
-			//USVt Jac;
+			USVt *Jac;
 
 			// End-effector
-			//double *const o_n_9; // orientation
-			//double *const p_n; // position
+			double *o_n_9; // orientation
+			double *p_n; // position
 
 			// Cartesian space	
 			// reference
@@ -74,8 +74,8 @@ namespace motion
 			// reference
 			double *q_r, *qd_r, *qdd_r;
 			// state
-			double *const q; // linked to robot
-			//double *const qd; // linked to robot
+			double *q; // linked to robot
+			double *qd; // linked to robot
 			double *qdd;
 
 			double _q_err; //for monitoring
@@ -91,8 +91,6 @@ namespace motion
 			double *q_err, *qd_err;
 
 		private:
-			KineChain* _robot;
-
 			void int_vel(void);
 			void int_acc(void);
 		};

@@ -4,6 +4,7 @@
 
 namespace motor
 {
+	// Factory method
 	void MotorControlInterface::CreateInstancePtr(const CL_Name &name, const CL_Config &config)
 	{
 		switch(name)

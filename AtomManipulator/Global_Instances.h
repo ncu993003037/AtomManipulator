@@ -2,14 +2,12 @@
 #define _GLOBAL_INSTANCES_H_
 
 
-#define KINECT 0
-
 // Robot config
 static const int ROBOT_DOF = 6;
 
 // OpenGL
 #include "OpenGL_Model/OpenGLControl.h"
-static COpenGLControl openGLControl;
+static COpenGLControl openGLControl; // avoid to use extern property 
 
 // Robot Model
 #include "MotionControl/KineChain/KineChain.h"
@@ -19,10 +17,6 @@ using namespace motion;
 #include "MotorControl/MotorControlInterface.h"
 using namespace motor;
 
-// Kinect
-#if KINECT
-	KinectSensor kinect;
-#endif
 
 inline void AtomManipulatorInitialization(void)
 {

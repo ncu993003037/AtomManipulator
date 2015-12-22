@@ -128,6 +128,7 @@
   <ItemGroup>
     <ClCompile Include="MotionControl\KineChain\KineChain.cpp" />
     <ClCompile Include="MotionControl\Math\MatLib.cpp" />
+    <ClCompile Include="MotionControl\MotionController.cpp" />
     <ClCompile Include="MotorControl\FaulhaberController\FaulhaberController.cpp" />
     <ClCompile Include="MotorControl\MotorControlInterface.cpp" />
     <ClCompile Include="MotorControl\MotorController.cpp" />
@@ -173,6 +174,7 @@
   <ItemGroup>
     <ClInclude Include="MotionControl\KineChain\KineChain.h" />
     <ClInclude Include="MotionControl\Math\MatLib.h" />
+    <ClInclude Include="MotionControl\MotionController.h" />
     <ClInclude Include="MotorControl\FaulhaberController\FaulhaberController.h" />
     <ClInclude Include="MotorControl\MotorControlInterface.h" />
     <ClInclude Include="MotorControl\MotorController.h" />

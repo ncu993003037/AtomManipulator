@@ -1,5 +1,5 @@
+#include "MotorControl/MotorControlInterface.h" // should be placed before KineChain.h
 #include "MotionControl/KineChain/KineChain.h"
-
 
 
 namespace motion
@@ -10,8 +10,6 @@ namespace motion
 	KineChain::KineChain(void)
 		: t_base(NULL),
 		nonempty_link(NULL)
-		//_motors(nullptr)
-		//_if_set_motor_ptr(false)
 	{
 	}
 	
@@ -231,7 +229,7 @@ namespace motion
 		}
 	}
 
-	void KineChain::FwdKine (void)
+	void KineChain::FwdKine(void)
 	{// update f_o and f_p with q
 
 		double rel [12]; // 3*4  [R12 p12]	
@@ -242,8 +240,10 @@ namespace motion
 			Mat_xy_plu (f_o+9*n+9, f_p+3*(n-1), f_p+3*n, 3) ; //  p2 = p2_tmp + p1	(p2_tmp is stored in f_o+9*n+9)		
 		}
 
-		//if (_if_set_motor_ptr)
-			//_motors->SetMotorInput((float *)q);
+		if (motor::MotorControlInterface::GetMotorControlInterface().
+			GetInstancePtr())
+		motor::MotorControlInterface::GetMotorControlInterface().
+			GetInstancePtr()->SetMotorInput((float *)q);
 	}
 
 	void KineChain::compute_Euler_ang(double* RotM, double* EulerAng)
