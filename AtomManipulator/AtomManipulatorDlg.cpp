@@ -9,7 +9,6 @@
 #define new DEBUG_NEW
 #endif
 
-COpenGLControl openGLControl;
 CRobotArmDlg *pMainDlg;
 
 // 對 App About 使用 CAboutDlg 對話方塊

@@ -18,6 +18,8 @@
 
 #include "OpenGL_Model/Rendering/desk.h"
 
+#include "MotionControl/KineChain/KineChain.h"
+
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -317,7 +319,7 @@ void COpenGLControl::DrawGLScene()
 
 
 	// Robot sticks
-	//robot.draw_stick();
+	motion::KineChain::GetRobotKineChain().draw_stick();
 
 	glPushMatrix();
 		glTranslatef( 0., 0., 0.);

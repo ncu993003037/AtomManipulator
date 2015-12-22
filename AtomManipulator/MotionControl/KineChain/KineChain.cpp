@@ -7,43 +7,12 @@ namespace motion
 	/////////////////////////////
 	//----Member functions----///
 	/////////////////////////////
-	KineChain::KineChain(int DOF_)
-		: DOF(DOF_), 
-		t_base(NULL),
+	KineChain::KineChain(void)
+		: t_base(NULL),
 		nonempty_link(NULL)
 		//_motors(nullptr)
 		//_if_set_motor_ptr(false)
 	{
-		// joint
-		q = new double [DOF]; 
-		Mat_zeros(q, DOF);
-		qd = new double [DOF]; 
-		Mat_zeros(qd, DOF);
-	
-
-		// frame
-		frame = new double [12 * (DOF+1) +3 ]; // 3 elements used as cache
-		f_o = frame; 
-		f_p = frame + 9 * (DOF+1) +3 ;	
-		Mat_eye(f_o,3,3); // Initialize the orientation of the base
-		Mat_zeros(f_p,3); // Initialize the position of the base
-
-
-		// DH 
-		DH = new double [6*DOF];
-	
-		DH_alpha = DH       ;
-		DH_sa    = DH +   DOF; // sin(alpha)
-		DH_ca    = DH + 2*DOF; // cos(alpha)
-		DH_theta = DH + 3*DOF;
-		DH_a	 = DH + 4*DOF;
-		DH_d     = DH + 5*DOF;
-	
-		Mat_zeros(DH, 6*DOF);
-
-		// the Jacobian of frame k-1
-		Jac_k = new double[DOF*6]; 
-		nonempty_link = new int [DOF];
 	}
 	
 	KineChain::~KineChain(void)
@@ -57,6 +26,40 @@ namespace motion
 
 		if (t_base != NULL)
 			delete [] t_base;
+	}
+
+	void KineChain::InitKineChain(int dof)
+	{
+		DOF = dof;
+
+		// joint
+		q = new double [DOF]; 
+		Mat_zeros(q, DOF);
+		qd = new double [DOF]; 
+		Mat_zeros(qd, DOF);
+
+		// frame
+		frame = new double [12 * (DOF+1) +3 ]; // 3 elements used as cache
+		f_o = frame; 
+		f_p = frame + 9 * (DOF+1) +3 ;	
+		Mat_eye(f_o,3,3); // Initialize the orientation of the base
+		Mat_zeros(f_p,3); // Initialize the position of the base
+
+		// DH 
+		DH = new double [6*DOF];
+
+		DH_alpha = DH       ;
+		DH_sa    = DH +   DOF; // sin(alpha)
+		DH_ca    = DH + 2*DOF; // cos(alpha)
+		DH_theta = DH + 3*DOF;
+		DH_a	 = DH + 4*DOF;
+		DH_d     = DH + 5*DOF;
+
+		Mat_zeros(DH, 6*DOF);
+
+		// the Jacobian of frame k-1
+		Jac_k = new double[DOF*6]; 
+		nonempty_link = new int [DOF];
 	}
 
 	void KineChain::setDH (double *DH_a, double *DH_alpha, double *DH_d, double *DH_theta)

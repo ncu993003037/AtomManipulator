@@ -7,12 +7,17 @@
 // Robot config
 static const int ROBOT_DOF = 6;
 
-#include "MotorControl/MotorControlInterface.h"
-using namespace motor;
+// OpenGL
+#include "OpenGL_Model/OpenGLControl.h"
+static COpenGLControl openGLControl;
 
 // Robot Model
 #include "MotionControl/KineChain/KineChain.h"
-motion::KineChain robot(ROBOT_DOF);
+using namespace motion;
+
+// Motor Control API
+#include "MotorControl/MotorControlInterface.h"
+using namespace motor;
 
 // Kinect
 #if KINECT
@@ -24,10 +29,9 @@ inline void AtomManipulatorInitialization(void)
 	// Motion Control
 	double base_p [3] = {0, 0, 1.220};
 	double base_o [9] = {0, -1, 0, -1, 0, 0, 0, 0, -1};
-	//#if MOTOR
-	//	robot.set_motor_control_ptr(&Motors);
-	//#endif
-	//robot.set_base(base_o, base_p);
-	//robot.setDH_txt("./DH_Data/Atom_DH.txt");
+
+	KineChain::GetRobotKineChain().InitKineChain(ROBOT_DOF);
+	KineChain::GetRobotKineChain().set_base(base_o, base_p);
+	KineChain::GetRobotKineChain().setDH_txt("./DH_Data/Atom_DH.txt");
 }
 #endif

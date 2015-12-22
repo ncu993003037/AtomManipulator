@@ -24,10 +24,16 @@ namespace motion
 	class KineChain
 	{
 	public:
-		KineChain(int DOF_); // initialize with zero DH parameter	
+		KineChain(void); // initialize with zero DH parameter	
 		~KineChain(void);
 
-		const int DOF;
+		static KineChain& GetRobotKineChain()
+		{
+			static KineChain _robot;
+			return _robot;
+		}
+
+		void InitKineChain(int dof);
 
 		// Set Status (and perform FK) function
 		void set_base (const double* o, const double *p);
@@ -59,6 +65,7 @@ namespace motion
 		void draw_stick(void); 
 
 	private:
+		int DOF;
 		int N_nonempty_link;
 		int *nonempty_link;
 		double *frame, *f_o, *f_p; // orientation and position of each frame w.r.t base	    
