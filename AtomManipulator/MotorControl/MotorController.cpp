@@ -3,7 +3,7 @@
 namespace motor
 {
 
-	MotorController::MotorController(const CL_Config &config)
+	MotorController::MotorController(const gConfig &config)
 		: _config(config),
 		_init_success(false),
 		_gThreadHandle(NULL),
@@ -26,7 +26,7 @@ namespace motor
 		if (!_init_success)
 		{
 			printf("Error [Motor]: Fail to initialize, Thread cannot start.\n");
-			//return;
+			return;
 		}
 
 		// Allocate
@@ -94,19 +94,32 @@ namespace motor
 			_ElapsedMicroseconds.QuadPart *= 1000000; // Micro-seconds
 			_ElapsedMicroseconds.QuadPart /= _nFreq.QuadPart;
 
-			//if (_ElapsedMicroseconds.QuadPart >= _config._sleep_time_micro_sec_)
-			//{
-				printf("_ElapsedMicroseconds: %d\n",_ElapsedMicroseconds.QuadPart);
-				QueryPerformanceCounter(&_StartTime);
+			printf("Info [Motor]: _ElapsedMicroseconds = %d\n",_ElapsedMicroseconds.QuadPart);
+			QueryPerformanceCounter(&_StartTime);
 
-				if(_motor_action_go)
-					WriteCommand(_motor_input);
-			//}
+			// Do something
+			if(_motor_action_go)
+				WriteCommand(_motor_input);
 
 			usleep(_config._sleep_time_micro_sec_);
 		}
 
 		return 0;
+	}
+
+	int MotorController::GetThreadOpened() const {return _gThreadOpened;}
+
+	inline void MotorController::usleep(__int64 usec_) //for WINAPI
+	{ 
+		HANDLE timer; 
+		LARGE_INTEGER ft; 
+
+		ft.QuadPart = -(10*usec_); // Convert to 100 nanosecond interval, negative value indicates relative time
+
+		timer = CreateWaitableTimer(NULL, TRUE, NULL); 
+		SetWaitableTimer(timer, &ft, 0, NULL, NULL, 0); 
+		WaitForSingleObject(timer, INFINITE); 
+		CloseHandle(timer); 
 	}
 
 	void MotorController::SetMotorInput(float *d) 
@@ -125,20 +138,4 @@ namespace motor
 		if (_motor_action_go) printf("Info [Motor]: Turn action on\n");
 		else printf("Info [Motor]: Turn action off\n");
 	}
-
-	int MotorController::GetThreadOpened() const {return _gThreadOpened;}
-
-	void inline MotorController::usleep(__int64 usec_) //for WINAPI
-	{ 
-		HANDLE timer; 
-		LARGE_INTEGER ft; 
-
-		ft.QuadPart = -(10*usec_); // Convert to 100 nanosecond interval, negative value indicates relative time
-
-		timer = CreateWaitableTimer(NULL, TRUE, NULL); 
-		SetWaitableTimer(timer, &ft, 0, NULL, NULL, 0); 
-		WaitForSingleObject(timer, INFINITE); 
-		CloseHandle(timer); 
-	}
-
 }/* namespace motor */

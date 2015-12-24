@@ -13,7 +13,7 @@ extern "C"
 }
 
 //#include "lapacke.h"
-#define s_ele sizeof(double)
+static const size_t s_ele = sizeof(double);
 typedef long Mat_int;
 
 

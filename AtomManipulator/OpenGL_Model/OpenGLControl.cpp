@@ -18,7 +18,7 @@
 
 #include "OpenGL_Model/Rendering/desk.h"
 
-#include "MotionControl/KineChain/KineChain.h"
+#include "MotionGeneration/KineChain/KineChain.h"
 
 
 #ifdef _DEBUG
@@ -42,10 +42,6 @@ COpenGLControl::COpenGLControl()
 , PerspectiveView(true)
 , MotorAction(0)
 , DrawCurRArm(false)
-, initIKcheck(0)
-, resetCheck(0)
-, robotRunningCheck(0)
-, checkObs(0)
 , RArm("OpenGL_Model\\DHParameter.txt")
 {
 	dc = NULL;
@@ -336,9 +332,11 @@ void COpenGLControl::DrawGLScene()
 
 	if (DrawCurRArm)
 	{
+		double th[6] = {0};
+		motion::KineChain::GetRobotKineChain().get_q(th);
 		float drawTheta[6] = {0};
-		//for (int i = 0 ; i < 6 ; i++)
-			//drawTheta[i] = vic.outputJoints[i]*180./3.1415926;
+		for (int i = 0 ; i < 6 ; i++)
+			drawTheta[i] = th[i] * 180./3.1415926;
 		RArm.ResetTheta(drawTheta);
 		Draw_RArm();
 	}

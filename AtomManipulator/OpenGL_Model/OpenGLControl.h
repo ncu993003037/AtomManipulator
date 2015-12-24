@@ -92,10 +92,7 @@ private:
 	AUX_RGBImageRec* LoadBMP(char* Filename);
 
 public:
-	void ResetRArm();
 	//======右手Motion的Parameter======
-	void RMotion();
-	void RMotion2();
 
 	int  Rcount;
 
@@ -125,11 +122,7 @@ public:
 	int MotorAction;
 
 	int DrawCurRArm;
-	void Draw_CurrentRArm();
 	//------------------------------------------------------------------
-	void ArmPathPlanning();
-
-	void GOmanubb();
 
 
 	double TrajInput[3];
@@ -142,14 +135,6 @@ public:
 	float degx, degy, degz, rdegx, rdegy, rdegz;
 	int NumPts;
 
-	void SquareGo();
-
-	float finalInput[6], sixjoint[7];
-	int initIKcheck, resetCheck, robotRunningCheck;
-	int checkObs;
-
-	float RAini_theta[7+1]; //手臂起始位置
-	std::vector <Dimension> RActionPath;
 	ArmKinematic RArm;
 };
 

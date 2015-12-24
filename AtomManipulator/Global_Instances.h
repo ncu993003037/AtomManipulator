@@ -2,7 +2,7 @@
 #define _GLOBAL_INSTANCES_H_
 
 
-// Robot config
+// Config
 static const int ROBOT_DOF = 6;
 
 // OpenGL
@@ -10,13 +10,13 @@ static const int ROBOT_DOF = 6;
 static COpenGLControl openGLControl; // avoid to use extern property 
 
 // Robot Model
-#include "MotionControl/KineChain/KineChain.h"
-using namespace motion;
+#include "MotionGeneration/KineChain/KineChain.h"
 
 // Motor Control API
 #include "MotorControl/MotorControlInterface.h"
-using namespace motor;
 
+// Motion API
+#include "MotionGeneration/MotionGenerationInterface.h"
 
 inline void AtomManipulatorInitialization(void)
 {
@@ -24,8 +24,14 @@ inline void AtomManipulatorInitialization(void)
 	double base_p [3] = {0, 0, 1.220};
 	double base_o [9] = {0, -1, 0, -1, 0, 0, 0, 0, -1};
 
-	KineChain::GetRobotKineChain().InitKineChain(ROBOT_DOF);
-	KineChain::GetRobotKineChain().set_base(base_o, base_p);
-	KineChain::GetRobotKineChain().setDH_txt("./DH_Data/Atom_DH.txt");
+	motion::KineChain::GetRobotKineChain().InitKineChain(ROBOT_DOF);
+	motion::KineChain::GetRobotKineChain().set_base(base_o, base_p);
+	motion::KineChain::GetRobotKineChain().setDH_txt("./DH_Data/Atom_DH.txt");
+
+	motion::gConfig atom_motion_config;
+	atom_motion_config._DOF_ = ROBOT_DOF;
+	atom_motion_config._sleep_time_micro_sec_ = 1000;
+	motion::MotionGenerationInterface::GetMotionGenerationInterface().
+		CreateInstancePtr(motion::DEFAULT, atom_motion_config);
 }
 #endif

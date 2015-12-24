@@ -12,12 +12,12 @@ namespace motor
 		int _DOF_;
 		int _expected_baud_rate_;
 		int _sleep_time_micro_sec_;
-	} CL_Config;
+	} gConfig;
 
 	class MotorController
 	{
 	public:
-		explicit MotorController(const CL_Config &config);
+		explicit MotorController(const gConfig &config);
 		virtual ~MotorController();
 		void Launch();
 		bool Shutdown();
@@ -51,7 +51,7 @@ namespace motor
 		float *_motor_input;
 
 		bool _motor_action_go, _init_success;
-		const CL_Config _config;
+		const gConfig _config;
 	};
 }/* namespace motor */
 #endif

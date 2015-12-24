@@ -34,15 +34,6 @@
     <Filter Include="原始程式檔\Sensors\KinectSensor">
       <UniqueIdentifier>{67964ef4-a73b-4c46-a7ca-fac65587ff2d}</UniqueIdentifier>
     </Filter>
-    <Filter Include="原始程式檔\MotionControl">
-      <UniqueIdentifier>{48e11950-2a0d-4a9b-8003-45b7bc7957bc}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="原始程式檔\MotionControl\Math">
-      <UniqueIdentifier>{39fc21a0-24fd-45d1-9de7-d20834cc0e49}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="原始程式檔\MotionControl\KineChain">
-      <UniqueIdentifier>{199d7e69-26d3-4208-9b80-a267946ed709}</UniqueIdentifier>
-    </Filter>
     <Filter Include="原始程式檔\MotorControl">
       <UniqueIdentifier>{357ad35c-6d37-4b4a-91de-df94ab3eb80f}</UniqueIdentifier>
     </Filter>
@@ -51,6 +42,18 @@
     </Filter>
     <Filter Include="原始程式檔\MotorControl\SerialPort">
       <UniqueIdentifier>{5a8e745f-1898-4c66-8b5e-33cbd689d628}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="原始程式檔\MotionGeneration">
+      <UniqueIdentifier>{48e11950-2a0d-4a9b-8003-45b7bc7957bc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="原始程式檔\MotionGeneration\Math">
+      <UniqueIdentifier>{39fc21a0-24fd-45d1-9de7-d20834cc0e49}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="原始程式檔\MotionGeneration\KineChain">
+      <UniqueIdentifier>{199d7e69-26d3-4208-9b80-a267946ed709}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="原始程式檔\MotionGeneration\DefaultMotionController">
+      <UniqueIdentifier>{a95f4dcb-0af9-4c42-9289-0a3c862a3564}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -159,12 +162,6 @@
     <ClCompile Include="MotorControl\SerialPort\serial_port.cpp">
       <Filter>原始程式檔\MotorControl\SerialPort</Filter>
     </ClCompile>
-    <ClCompile Include="MotionControl\KineChain\KineChain.cpp">
-      <Filter>原始程式檔\MotionControl\KineChain</Filter>
-    </ClCompile>
-    <ClCompile Include="MotionControl\Math\MatLib.cpp">
-      <Filter>原始程式檔\MotionControl\Math</Filter>
-    </ClCompile>
     <ClCompile Include="MotorControl\MotorController.cpp">
       <Filter>原始程式檔\MotorControl</Filter>
     </ClCompile>
@@ -174,8 +171,20 @@
     <ClCompile Include="MotorControl\MotorControlInterface.cpp">
       <Filter>原始程式檔\MotorControl</Filter>
     </ClCompile>
-    <ClCompile Include="MotionControl\MotionController.cpp">
-      <Filter>原始程式檔\MotionControl</Filter>
+    <ClCompile Include="MotionGeneration\KineChain\KineChain.cpp">
+      <Filter>原始程式檔\MotionGeneration\KineChain</Filter>
+    </ClCompile>
+    <ClCompile Include="MotionGeneration\Math\MatLib.cpp">
+      <Filter>原始程式檔\MotionGeneration\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="MotionGeneration\MotionGenerationInterface.cpp">
+      <Filter>原始程式檔\MotionGeneration</Filter>
+    </ClCompile>
+    <ClCompile Include="MotionGeneration\MotionGenerator.cpp">
+      <Filter>原始程式檔\MotionGeneration</Filter>
+    </ClCompile>
+    <ClCompile Include="MotionGeneration\DefaultMotionController\DefaultMotionControl.cpp">
+      <Filter>原始程式檔\MotionGeneration\DefaultMotionController</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -251,12 +260,6 @@
     <ClInclude Include="MotorControl\SerialPort\util.h">
       <Filter>原始程式檔\MotorControl\SerialPort</Filter>
     </ClInclude>
-    <ClInclude Include="MotionControl\KineChain\KineChain.h">
-      <Filter>原始程式檔\MotionControl\KineChain</Filter>
-    </ClInclude>
-    <ClInclude Include="MotionControl\Math\MatLib.h">
-      <Filter>原始程式檔\MotionControl\Math</Filter>
-    </ClInclude>
     <ClInclude Include="MotorControl\MotorController.h">
       <Filter>原始程式檔\MotorControl</Filter>
     </ClInclude>
@@ -269,8 +272,20 @@
     <ClInclude Include="Global_Instances.h">
       <Filter>標頭檔</Filter>
     </ClInclude>
-    <ClInclude Include="MotionControl\MotionController.h">
-      <Filter>原始程式檔\MotionControl</Filter>
+    <ClInclude Include="MotionGeneration\KineChain\KineChain.h">
+      <Filter>原始程式檔\MotionGeneration\KineChain</Filter>
+    </ClInclude>
+    <ClInclude Include="MotionGeneration\Math\MatLib.h">
+      <Filter>原始程式檔\MotionGeneration\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="MotionGeneration\MotionGenerationInterface.h">
+      <Filter>原始程式檔\MotionGeneration</Filter>
+    </ClInclude>
+    <ClInclude Include="MotionGeneration\MotionGenerator.h">
+      <Filter>原始程式檔\MotionGeneration</Filter>
+    </ClInclude>
+    <ClInclude Include="MotionGeneration\DefaultMotionController\DefaultMotionControl.h">
+      <Filter>原始程式檔\MotionGeneration\DefaultMotionController</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

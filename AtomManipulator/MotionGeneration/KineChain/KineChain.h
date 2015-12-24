@@ -4,8 +4,7 @@
 #define _KINECHAIN_ 
 
 
-//#include "MotorControl/MotorControlInterface.h"
-#include "MotionControl/Math/MatLib.h"
+#include "MotionGeneration/Math/MatLib.h"
 #include <fstream>
 #include <string>
 #include "glut.h"
@@ -42,10 +41,16 @@ namespace motion
 		void setDH (double *DH_a, double *DH_alpha, double *DH_d, double *DH_theta);
 		void setDH_txt (std::string file_name);
 
+		void set_q (double *q);
+		void set_q (double *q, int l);
+		void set_qd (double *qd); 	
+
 		// Get Status
-		void get_q (double* q);	
+		void get_q (double* q);
+
 		void get_f_orie (double * orie, int n);	
 		void get_f_orie (double * orie); 
+
 		void get_f_pos (double *zaxis, int n);
 		void get_f_pos (double *zaxis);
 
@@ -59,16 +64,12 @@ namespace motion
 		
 		void get_Jac_n_dot (double *Jac, double *Jac_dot, int n, bool half = false, double *pn = NULL); // get the Jacobian and Jacobian dot of frame n
 		
+		void compute_Euler_ang(double* RotM, double* EulerAng);	
+
 		void FwdKine (void); // update f_o and f_p with q	
 		
 		// Draw
 		void draw_stick(void); 
-
-	private:
-		int DOF;
-		int N_nonempty_link;
-		int *nonempty_link;
-		double *frame, *f_o, *f_p; // orientation and position of each frame w.r.t base	    
 
 	private:
 		void c_prod (double* a, double* b, double* c, double beta = 0); // c = a x b	
@@ -76,14 +77,15 @@ namespace motion
 		void DH_tranf (int n, double*o, double*p);
 
 		void jacodot(double *qd, double *tn, double *pn, double *pk, double *zk, double* j_dot_c, int k, bool half);
-
-		void set_q (double *q);
-		void set_q (double *q, int l);
-		void set_qd (double *qd); 	
 	
 		// Draw
 		void Init_physical_link(void);
-		void compute_Euler_ang(double* RotM, double* EulerAng);	
+
+	private:
+		int DOF;
+		int N_nonempty_link;
+		int *nonempty_link;
+		double *frame, *f_o, *f_p; // orientation and position of each frame w.r.t base	    
 
 		// members
 		double *DH, *DH_a, *DH_alpha, *DH_d, *DH_theta; 
@@ -98,14 +100,6 @@ namespace motion
 		// cache
 		double *Jac_k; // temp_obj
 		float T_end [16]; // Transformation matrix of end-effector (for GL)
-
-	// This pointer is used to throw motor commands after FK
-	//private:
-	//	std::shared_ptr<motor::MotorController> atom_motors;
-
-	//public:
-	//	void MotorControllerOpen(bool open);
-	//	void GetMotorControllerPtr(std::shared_ptr<motor::MotorController> ptr);
 	};
 }/* namespace motion */
 

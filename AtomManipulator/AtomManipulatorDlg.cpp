@@ -65,7 +65,6 @@ void CRobotArmDlg::DoDataExchange(CDataExchange* pDX)
 
 	DDX_Check(pDX, IDC_CHECK_DrawGround, openGLControl.CDrawGround);
 	DDX_Check(pDX, IDC_CHECK_DrawRealArm, openGLControl.DrawCurRArm);
-	DDX_Check(pDX, IDC_CHECK2, openGLControl.checkObs);
 	DDX_Check(pDX, IDC_ROBOT_MODE, Robot_Mode);
 
 	DDX_Text(pDX, IDC_EDIT_X, openGLControl.StaticX);
@@ -95,8 +94,6 @@ BEGIN_MESSAGE_MAP(CRobotArmDlg, CDialog)
 	ON_EN_CHANGE(IDC_EDIT_RY, &CRobotArmDlg::OnEnChangeEditRy)
 	ON_EN_CHANGE(IDC_EDIT_RZ, &CRobotArmDlg::OnEnChangeEditRz)
 	ON_STN_CLICKED(IDC_STATUS, &CRobotArmDlg::OnStnClickedStatus)
-	ON_BN_CLICKED(IDC_MRVIC, &CRobotArmDlg::OnBnClickedMrvic)
-	ON_BN_CLICKED(IDC_CHECK2, &CRobotArmDlg::OnBnClickedCheck2)
 	ON_BN_CLICKED(IDC_CHECK_DrawRealArm, &CRobotArmDlg::OnBnClickedCheckDrawrealarm)
 	ON_BN_CLICKED(IDC_ROBOT_MODE, &CRobotArmDlg::OnBnClickedRobotMode)
 END_MESSAGE_MAP()
@@ -162,6 +159,8 @@ BOOL CRobotArmDlg::OnInitDialog()
 	m_edCtrl_RY.SetWindowTextA(str);
 	str.Format("%.2f",openGLControl.rpZ);
 	m_edCtrl_RZ.SetWindowTextA(str);
+
+	SetDlgItemText(IDC_STATUS, "[Simulation Mode] Atom is ready to roll.");
 
 	// TODO: 在此加入額外的初始設定
 	return TRUE;  // 傳回 TRUE，除非您對控制項設定焦點
@@ -366,52 +365,50 @@ void CRobotArmDlg::OnEnChangeEditRz()
 void CRobotArmDlg::OnBnClickedButton11()
 {
 	// TODO: Add your control notification handler code here
+	if (!Robot_Mode)
+		Robot_Mode_Btn.EnableWindow(FALSE);
 
-	//openGLControl.GOmanubb();
+	std::shared_ptr<motion::MotionGenerator> atom_motion
+		= motion::MotionGenerationInterface::GetMotionGenerationInterface().GetInstancePtr();
 
-	//CString str;
-	//str.Format("%.2f",openGLControl.StaticRX);
-	//m_edCtrl_RX.SetWindowTextA(str);
-	//str.Format("%.2f",openGLControl.StaticRY);
-	//m_edCtrl_RY.SetWindowTextA(str);
-	//str.Format("%.2f",openGLControl.StaticRZ);
-	//m_edCtrl_RZ.SetWindowTextA(str);
+	double p_r [3] = {openGLControl.StaticX, openGLControl.StaticY, openGLControl.StaticZ};// m
+	double o_r [9] = {0};
 
-	//reactiveControllerTJ.modified = true;
+	double rdegx = openGLControl.StaticRX/180.0*PI;
+	double rdegy = openGLControl.StaticRY/180.0*PI;
+	double rdegz = openGLControl.StaticRZ/180.0*PI;
+	o_r[0] = cos(rdegy)*cos(rdegz);
+	o_r[1] = -cos(rdegx)*sin(rdegz)+sin(rdegx)*sin(rdegy)*cos(rdegz);
+	o_r[2] = sin(rdegx)*sin(rdegz)+cos(rdegx)*sin(rdegy)*cos(rdegz);
+	o_r[3] = cos(rdegy)*sin(rdegz);
+	o_r[4] = cos(rdegx)*cos(rdegz)+sin(rdegx)*sin(rdegy)*sin(rdegz);
+	o_r[5] = -sin(rdegx)*cos(rdegz)+cos(rdegx)*sin(rdegy)*sin(rdegz);
+	o_r[6] = -sin(rdegy);
+	o_r[7] = sin(rdegx)*cos(rdegy);
+	o_r[8] = cos(rdegx)*cos(rdegy);
+
+	atom_motion->set_o_r(o_r);
+	atom_motion->set_p_r(p_r);
+
+	atom_motion->set_BK_p(0.5, 1);
+	atom_motion->set_BK_o(0.5, 1);
+	atom_motion->set_BK_q(1, 5);
+
+	atom_motion->set_ik_control_mode(true);
+
+	if (!atom_motion->GetThreadOpened())
+		atom_motion->Launch();
 }
 
 void CRobotArmDlg::OnBnClickedButton5() //RESET BUTTON
 {
-	//breakflag = true;
-	//openGLControl.ResetRArm();
+	std::shared_ptr<motion::MotionGenerator> atom_motion
+		= motion::MotionGenerationInterface::GetMotionGenerationInterface().GetInstancePtr();
 
-	//CString str;
-	//str.Format("%.2f",openGLControl.rpX);
-	//m_edCtrl_RX.SetWindowTextA(str);
-	//str.Format("%.2f",openGLControl.rpY);
-	//m_edCtrl_RY.SetWindowTextA(str);
-	//str.Format("%.2f",openGLControl.rpZ);
-	//m_edCtrl_RZ.SetWindowTextA(str);
+	atom_motion->set_ik_control_mode(false);
 
-	//vic.toStaticObs = false;
-	//vic.toJointLimit = false;
-	//vic.nullMode = NULL_SPACE_SELECTION_J;
-	//vic.withReferencePoints = false;
-	//vic.toKinect = false;
-	//memcpy( vic.qref, vic.qr[4].data, 6 * sizeof(double));
-
-	#if SAVE_DATA
-	//if (vic.counter >= 20000)
-	{
-		mfile_rP.close();
-		mfile_BL.close();
-		mfile_Xerr.close();
-		//mfile_rPdot.close();
-		//mfile_Qdiag.close();
-		cout<<"mfile closed!"<<endl;
-		system("pause");
-	}
-#endif
+	if (!Robot_Mode)
+		Robot_Mode_Btn.EnableWindow(TRUE);
 }
 
 void CRobotArmDlg::OnStnClickedStatus()
@@ -420,180 +417,21 @@ void CRobotArmDlg::OnStnClickedStatus()
 	UpdateData(true);	
 }
 
-void CRobotArmDlg::OnBnClickedCheck2()
-{
-	// TODO: Add your control notification handler code here
-	UpdateData(true);
-	//if (openGLControl.checkObs)
-	//{
-	//	vic.toStaticObs = true;
-	//} 
-	//else
-	//{
-	//	vic.toStaticObs = false;
-	//}
-}
-
-//DWORD_PTR GetNumCPUs() 
-//{
-//	SYSTEM_INFO m_si = {0, };
-//	GetSystemInfo(&m_si);
-//	return (DWORD_PTR)m_si.dwNumberOfProcessors;
-//}
-
-
-void CRobotArmDlg::OnBnClickedMrvic()
-{
-	// TODO: Add your control notification handler code here
-#if KINECT
-	//if ( vic.toKinect)
-	{	
-		kinectSensor.Nui_Zero();
-		kinectSensor.GetKinectSkeleton();
-	}
-#endif
-
-	//cout<<"Num. of CPUs: "<<GetNumCPUs()<<endl;
-
-//#if MOTOR
-	//gSendingThread = CreateThread(NULL,0,(LPTHREAD_START_ROUTINE)commandThreadLoop,(void*)0,0,&gTIDSending);
-	//gSendingThreadOpened = true;
-	//SetPriorityClass( gSendingThread, REALTIME_PRIORITY_CLASS);
-	//SetThreadPriority(gSendingThread,THREAD_PRIORITY_TIME_CRITICAL);
-	//SetThreadAffinityMask(gSendingThread, 1 << 1);
-//#endif
-
-	//Sleep(1000);
-	//mrvicThread = new boost::thread(&mrvicThreadControl);
-
-//#if MRVIC
-	//gArmControllerThread = CreateThread(NULL,0,(LPTHREAD_START_ROUTINE)mrvicThreadLoop,(void*)0,0,&gTIDArmController);
-	//gArmControllerThreadOpened = true;
-	//SetPriorityClass( gArmControllerThread, REALTIME_PRIORITY_CLASS);
-	//SetThreadPriority(gArmControllerThread,THREAD_PRIORITY_TIME_CRITICAL);
-	//SetThreadAffinityMask(gArmControllerThread, 1 << 1);
-//#endif
-}
-
-//void mrvicThreadLoop()
-//{
-//	float tmp[6] = {0.};
-//	double humanBody[60] = {0.};
-//
-//#if SAVE_DATA 
-//	mfile_rP.open("C:/Users/LSY/Desktop/sim3/sim3_rP.txt", ios::out);
-//	mfile_BL.open("C:/Users/LSY/Desktop/sim3/sim3_dist.txt", ios::out);
-//	mfile_Xerr.open("C:/Users/LSY/Desktop/sim3/sim3_Xerr.txt", ios::out);
-//	//mfile_rPdot.open("C:/Users/LSY/Desktop/sim3_qdd.txt", ios::out);
-//	//mfile_Qdiag.open("C:/Users/LSY/Desktop/exp1_Qdiag.txt", ios::out);
-//	vic.counter = 0;
-//#endif
-//
-//	LARGE_INTEGER StartTime;
-//	LARGE_INTEGER CurrentTime;
-//	LARGE_INTEGER nFreq;
-//	LARGE_INTEGER ElapsedMicroseconds;
-//
-//	QueryPerformanceFrequency(&nFreq); 
-//	QueryPerformanceCounter(&StartTime);
-//
-//	while(1)
-//	{
-//		if( breakflag)
-//			break;
-//
-//		QueryPerformanceCounter(&CurrentTime);
-//		ElapsedMicroseconds.QuadPart = CurrentTime.QuadPart - StartTime.QuadPart;
-//		ElapsedMicroseconds.QuadPart *= 1000000;
-//		ElapsedMicroseconds.QuadPart /= nFreq.QuadPart;
-//		//cout<<ElapsedMicroseconds.QuadPart<<endl;
-//		if (ElapsedMicroseconds.QuadPart >= 50)
-//		{
-//			//cout<<ElapsedMicroseconds.QuadPart<<endl;
-//			QueryPerformanceCounter(&StartTime);
-//
-//#if KINECT
-//			if (kinect.bFoundSkeleton && vic.toKinect)
-//			{
-//				for ( int i = 0 ; i < 20 ; i++)
-//				{
-//					humanBody[3*i] = -1.9 + kinect.HumanBody[i].z;
-//					humanBody[3*i+1] = 0.45 + kinect.HumanBody[i].x;
-//					humanBody[3*i+2] = 2.05 + kinect.HumanBody[i].y;
-//
-//					//humanBody[3*i] = -0.42 + kinectSensor.HumanBody[i].z*sin(45.*PI/180.) + kinectSensor.HumanBody[i].x*sin(45.*PI/180.);
-//					//humanBody[3*i+1] = 0.9 + kinectSensor.HumanBody[i].z*sin(-45.*PI/180.) + kinectSensor.HumanBody[i].x*sin(45.*PI/180.);
-//					//humanBody[3*i+2] = 1.35 +kinectSensor.HumanBody[i].y;
-//
-//					//humanBody[3*i] = -1.33 + kinectSensor.HumanBody[i].z * cos(27.0*PI/180.0) + kinectSensor.HumanBody[i].y * sin(27.0*PI/180.0);
-//					//humanBody[3*i+1] = kinectSensor.HumanBody[i].x;
-//					//humanBody[3*i+2] = 1.84 - kinectSensor.HumanBody[i].z * sin(27.0*PI/180.0) + kinectSensor.HumanBody[i].y * cos(27.0*PI/180.0);
-//				}
-//
-//				memcpy( vic.kinectData, humanBody, 60 * sizeof(double));
-//
-//				vic.humanDetect = true;
-//			}
-//			else
-//				vic.humanDetect = false;
-//#endif
-//
-//			vic.callMultiPriorityController( KineAll.CrdAll->data, 
-//																					KineAll.ZAxisAll->data, 
-//																					KineAll.MinLL_real,
-//																					KineAll.MaxLL_real);
-//
-//			for (int i = 0 ; i < 6 ; i++)
-//			{
-//				KineAll.FK_LLeg->theta[i+1] = vic.outputJoints[i];
-//				tmp[i] = vic.outputJoints[i]*180./PI;
-//			}
-//
-//			memcpy( finalInput, tmp, 6*sizeof(float));
-//
-//			//if ( openGLControl.DrawCurRArm)
-//			//{
-//			//	//gRenderKineWorking = true;
-//				//RArm.ResetTheta(finalInput);
-//			//	//gRenderKineWorking = false;
-//			//}
-//
-//			KineAll.FindFK();
-//
-//			openGLControl.pX = KineAll.CrdAll->data[18];
-//			openGLControl.pY = KineAll.CrdAll->data[19];
-//			openGLControl.pZ = KineAll.CrdAll->data[20];
-//
-//			KineAll.GetLegsCoords();
-//			KineAll.ComputeEulerAng(KineAll.LLegRotM, KineAll.EuAngLL);
-//
-//			openGLControl.rpX = KineAll.EuAngLL[0]/PI*180.;
-//			openGLControl.rpY = KineAll.EuAngLL[1]/PI*180.;
-//			openGLControl.rpZ = KineAll.EuAngLL[2]/PI*180.;
-//
-//			//Sleep(1);
-//		}
-//	}
-//
-//}
-
-
-
 void CRobotArmDlg::OnBnClickedRobotMode()
 {
 	// TODO: Add your control notification handler code here
 	UpdateData(true);
 	 
 	if (Robot_Mode) {
-		CL_Config atom_motor_config;
+		motor::gConfig atom_motor_config;
 		atom_motor_config._DOF_ = ROBOT_DOF;
 		atom_motor_config._expected_baud_rate_ = 115200;
 		atom_motor_config._sleep_time_micro_sec_ = 6000;
-		MotorControlInterface::GetMotorControlInterface()
-			.CreateInstancePtr(FAULHABER, atom_motor_config);
+		motor::MotorControlInterface::GetMotorControlInterface()
+			.CreateInstancePtr(motor::FAULHABER, atom_motor_config);
 
-		std::shared_ptr<MotorController> atom_motors 
-			= MotorControlInterface::GetMotorControlInterface().GetInstancePtr();
+		std::shared_ptr<motor::MotorController> atom_motors 
+			= motor::MotorControlInterface::GetMotorControlInterface().GetInstancePtr();
 
 		SetDlgItemText(IDC_STATUS, "[Real-robot Mode] Connecting....");
 
@@ -604,13 +442,14 @@ void CRobotArmDlg::OnBnClickedRobotMode()
 			Motor_Action_Btn.EnableWindow(TRUE);
 			SetDlgItemText(IDC_STATUS, "[Real-robot Mode] Atom is ready to roll.");
 		} else {
+			Robot_Mode = 0;
 			Robot_Mode_Btn.SetCheck(0);
 			SetDlgItemText(IDC_STATUS, "[Real-robot Mode] Fail to connect motors..");
 			Sleep(1000);
 			SetDlgItemText(IDC_STATUS, "[Simulation Mode] Atom is ready to roll.");
 		}
 	} else {
-		MotorControlInterface::GetMotorControlInterface().ResetInstancePtr();
+		motor::MotorControlInterface::GetMotorControlInterface().ResetInstancePtr();
 
 		Motor_Action_Btn.EnableWindow(FALSE);
 		SetDlgItemText(IDC_STATUS, "[Simulation Mode] Atom is ready to roll.");

@@ -126,9 +126,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="MotionControl\KineChain\KineChain.cpp" />
-    <ClCompile Include="MotionControl\Math\MatLib.cpp" />
-    <ClCompile Include="MotionControl\MotionController.cpp" />
+    <ClCompile Include="MotionGeneration\DefaultMotionController\DefaultMotionControl.cpp" />
+    <ClCompile Include="MotionGeneration\KineChain\KineChain.cpp" />
+    <ClCompile Include="MotionGeneration\Math\MatLib.cpp" />
+    <ClCompile Include="MotionGeneration\MotionGenerationInterface.cpp" />
+    <ClCompile Include="MotionGeneration\MotionGenerator.cpp" />
     <ClCompile Include="MotorControl\FaulhaberController\FaulhaberController.cpp" />
     <ClCompile Include="MotorControl\MotorControlInterface.cpp" />
     <ClCompile Include="MotorControl\MotorController.cpp" />
@@ -172,9 +174,11 @@
     <ClCompile Include="AtomManipulatorDlg.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="MotionControl\KineChain\KineChain.h" />
-    <ClInclude Include="MotionControl\Math\MatLib.h" />
-    <ClInclude Include="MotionControl\MotionController.h" />
+    <ClInclude Include="MotionGeneration\DefaultMotionController\DefaultMotionControl.h" />
+    <ClInclude Include="MotionGeneration\KineChain\KineChain.h" />
+    <ClInclude Include="MotionGeneration\Math\MatLib.h" />
+    <ClInclude Include="MotionGeneration\MotionGenerationInterface.h" />
+    <ClInclude Include="MotionGeneration\MotionGenerator.h" />
     <ClInclude Include="MotorControl\FaulhaberController\FaulhaberController.h" />
     <ClInclude Include="MotorControl\MotorControlInterface.h" />
     <ClInclude Include="MotorControl\MotorController.h" />

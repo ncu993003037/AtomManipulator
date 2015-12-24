@@ -16,7 +16,7 @@ namespace motor
 	class FaulhaberController : public MotorController
 	{
 	public:
-		explicit FaulhaberController(const CL_Config &config);
+		explicit FaulhaberController(const gConfig &config);
 		virtual ~FaulhaberController();
 
 	protected:
@@ -25,7 +25,7 @@ namespace motor
 
 	private:
 		DSPdriver *_DSP;
-		const CL_Config _config;
+		const gConfig _config;
 	};
 }/* namespace motor */
 

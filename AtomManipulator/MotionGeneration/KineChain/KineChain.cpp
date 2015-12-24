@@ -1,5 +1,5 @@
 #include "MotorControl/MotorControlInterface.h" // should be placed before KineChain.h
-#include "MotionControl/KineChain/KineChain.h"
+#include "KineChain.h"
 
 
 namespace motion
@@ -240,10 +240,13 @@ namespace motion
 			Mat_xy_plu (f_o+9*n+9, f_p+3*(n-1), f_p+3*n, 3) ; //  p2 = p2_tmp + p1	(p2_tmp is stored in f_o+9*n+9)		
 		}
 
-		if (motor::MotorControlInterface::GetMotorControlInterface().
-			GetInstancePtr())
-		motor::MotorControlInterface::GetMotorControlInterface().
-			GetInstancePtr()->SetMotorInput((float *)q);
+		std::shared_ptr<motor::MotorController> _motors = motor::MotorControlInterface::
+			GetMotorControlInterface().GetInstancePtr();
+		if (_motors)
+		{
+			if (_motors->GetThreadOpened())
+				_motors->SetMotorInput((float *)q);
+		}
 	}
 
 	void KineChain::compute_Euler_ang(double* RotM, double* EulerAng)

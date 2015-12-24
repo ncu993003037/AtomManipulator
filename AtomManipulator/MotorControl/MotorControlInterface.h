@@ -3,13 +3,13 @@
 #define _MOTORCONTROLINTERFACE_ 
 
 #include <memory>
-#include "MotorControl/MotorController.h"
+#include "MotorController.h"
 
 namespace motor
 {
 	typedef enum {
 		FAULHABER
-	} CL_Name;
+	} gName;
 
 	class MotorControlInterface
 	{
@@ -20,7 +20,7 @@ namespace motor
 			return _mci;
 		}
 
-		void CreateInstancePtr(const CL_Name &name, const CL_Config &config); // Factory method
+		void CreateInstancePtr(const gName &name, const gConfig &config); // Factory method
 		std::shared_ptr<MotorController>	GetInstancePtr(); // the shared pointer is more safe for destruction
 		void ResetInstancePtr();
 

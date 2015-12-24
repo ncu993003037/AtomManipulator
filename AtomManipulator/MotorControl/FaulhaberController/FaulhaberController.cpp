@@ -47,17 +47,17 @@ namespace motor
 
 				printf("%s ",write_command.c_str());
 
-				//if( !_sport._write((uchar* )write_command.c_str(),write_command.length()) )
-				//{
-				//	printf("Error [Motor]: Cannot write command to motor %d suddenly\n",index);
-				//	system("pause");
-				//}
+				if( !_sport._write((uchar* )write_command.c_str(),write_command.length()) )
+				{
+					printf("Error [Motor]: Cannot write command to motor %d suddenly\n",index);
+					system("pause");
+				}
 			}
 		}; // class DSPdriver
 
 		/////////////////////////////////////////////////////
 
-		FaulhaberController::FaulhaberController(const CL_Config &config)
+		FaulhaberController::FaulhaberController(const gConfig &config)
 			: MotorController(config),
 			_config(config)
 		{	
@@ -123,6 +123,6 @@ namespace motor
 		{
 			for (int i = 0 ; i < _config._DOF_ ; ++i)
 				_DSP[i].WriteOneMotorCommand(motor_input[i], i);
-			printf("\n");
+			//printf("\n");
 		}
 }/* namespace motor */

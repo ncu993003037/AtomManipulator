@@ -1,11 +1,10 @@
-#include "MotorControl/MotorControlInterface.h"
-#include "MotorControl/FaulhaberController/FaulhaberController.h"
+#include "MotorControlInterface.h"
+#include "FaulhaberController/FaulhaberController.h"
 
 
 namespace motor
 {
-	// Factory method
-	void MotorControlInterface::CreateInstancePtr(const CL_Name &name, const CL_Config &config)
+	void MotorControlInterface::CreateInstancePtr(const gName &name, const gConfig &config)
 	{
 		switch(name)
 		{

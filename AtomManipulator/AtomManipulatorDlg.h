@@ -70,8 +70,6 @@ public:
 	afx_msg void OnEnChangeEditRy();
 	afx_msg void OnEnChangeEditRz();
 	afx_msg void OnStnClickedStatus();
-	afx_msg void OnBnClickedMrvic();
-	afx_msg void OnBnClickedCheck2();
 	afx_msg void OnBnClickedCheckDrawrealarm();
 	afx_msg void OnBnClickedButton5();
 	afx_msg void OnBnClickedCheck3();
