@@ -290,17 +290,17 @@ void COpenGLControl::DrawGLScene()
 
 	glPushMatrix();
 
-	//glPushMatrix();
-	//	glTranslatef(StaticX,StaticY,StaticZ);
-	//	//glTranslatef(pX/1000,pY/1000,pZ/1000);
-	//	glPushMatrix();
-	//		glRotatef( StaticRX, 1, 0, 0 );
-	//		glRotatef( StaticRY, 0, 1, 0 );
-	//		glRotatef( StaticRZ, 0, 0, 1 );
-	//		glColor3f( 1, 1, 0 );
-	//		glutSolidCube(0.07);
-	//	glPopMatrix();
-	//glPopMatrix();
+	glPushMatrix();
+		glTranslatef(StaticX,StaticY,StaticZ);
+		//glTranslatef(pX/1000,pY/1000,pZ/1000);
+		glPushMatrix();
+			glRotatef( StaticRX, 1, 0, 0 );
+			glRotatef( StaticRY, 0, 1, 0 );
+			glRotatef( StaticRZ, 0, 0, 1 );
+			glColor3f( 1, 1, 0 );
+			glutSolidCube(0.07);
+		glPopMatrix();
+	glPopMatrix();
 
 	//glPushMatrix();
 	//	glTranslatef(pX/1000,pY/1000,pZ/1000);
