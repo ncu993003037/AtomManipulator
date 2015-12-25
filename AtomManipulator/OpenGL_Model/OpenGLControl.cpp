@@ -1,22 +1,22 @@
 #include "stdafx.h"
-#include "OpenGL_Model/OpenGLControl.h"
+#include "OpenGLControl.h"
 #include "math.h"
 
 //===========include OpenGl Model=============
-#include "OpenGL_Model/Rendering/RE1_5601.h"
-#include "OpenGL_Model/Rendering/BASE.h"
+#include "Rendering/RE1_5601.h"
+#include "Rendering/BASE.h"
 
-#include "OpenGL_Model/Rendering/J0.h"
-#include "OpenGL_Model/Rendering/J1.h"
-#include "OpenGL_Model/Rendering/J2.h"
-#include "OpenGL_Model/Rendering/J3.h"
-#include "OpenGL_Model/Rendering/J4.h"
-#include "OpenGL_Model/Rendering/J5.h"
-#include "OpenGL_Model/Rendering/J6.h"
-#include "OpenGL_Model/Rendering/J7.h"
-#include "OpenGL_Model/Rendering/J8.h"
+#include "Rendering/J0.h"
+#include "Rendering/J1.h"
+#include "Rendering/J2.h"
+#include "Rendering/J3.h"
+#include "Rendering/J4.h"
+#include "Rendering/J5.h"
+#include "Rendering/J6.h"
+#include "Rendering/J7.h"
+#include "Rendering/J8.h"
 
-#include "OpenGL_Model/Rendering/desk.h"
+#include "Rendering/desk.h"
 
 #include "MotionGeneration/KineChain/KineChain.h"
 

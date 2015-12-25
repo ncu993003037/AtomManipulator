@@ -7,7 +7,7 @@
 //6. ¨ä¥L:
 //************************************************************************************************************************
 #pragma once
-#include "OpenGL_Model\DH_matrix.h"
+#include "DH_matrix.h"
 #include <fstream>
 #include <string>
 

@@ -7,12 +7,13 @@
 // OpenGLControl.h : Header
 
 // Rendering
-#include "OpenGL_Model/DH_Model.h"
-#include "OpenGL_Model/OpenGLDevice.h"
-#include <OpenGL_Model/GL/gl.h>
-#include <OpenGL_Model/GL/glu.h>
-#include <OpenGL_Model/GL/glut.h>
-#include <OpenGL_Model/GL/glaux.h>
+#include "DH_Model.h"
+#include "OpenGLDevice.h"
+
+#include "GL/GL.h"
+#include "GL/GLU.h"
+#include "GL/GLUT.H"
+#include "GL/GLAUX.H"
 
 #include "atltypes.h"
 #include <vector>

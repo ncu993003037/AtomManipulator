@@ -8,10 +8,10 @@
 //************************************************************************************************************************
 #pragma once
 #include <iostream>
-#include "OpenGL_Model\newmat10\include.h"
-#include "OpenGL_Model\newmat10\newmat.h"
-#include "OpenGL_Model\newmat10\newmatio.h"
-#include "OpenGL_Model\newmat10\newmatap.h"
+#include "newmat10\include.h"
+#include "newmat10\newmat.h"
+#include "newmat10\newmatio.h"
+#include "newmat10\newmatap.h"
 #include <vector>
 //#include "BasicRRT.h"
 

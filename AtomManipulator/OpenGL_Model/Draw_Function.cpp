@@ -1,5 +1,5 @@
 #include "stdafx.h"
-#include "OpenGL_Model\OpenGLControl.h"
+#include "OpenGLControl.h"
 
 
 using namespace std;

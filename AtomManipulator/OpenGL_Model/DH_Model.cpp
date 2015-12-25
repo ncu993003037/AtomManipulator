@@ -1,4 +1,4 @@
-#include "OpenGL_Model\DH_Model.h"
+#include "DH_Model.h"
 
 
 ArmKinematic::ArmKinematic(float POriginPos[], float Pd[], float Pa[], float Palpha[], float Ptheta_home[], float Ptheta[], float Lowlimit[], float Uplimit[], float EEoffset[])

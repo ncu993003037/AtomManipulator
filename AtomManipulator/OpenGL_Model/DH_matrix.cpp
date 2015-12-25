@@ -1,4 +1,4 @@
-#include "OpenGL_Model\DH_matrix.h"
+#include "DH_matrix.h"
 #include <math.h>
 
 #ifndef PI
