@@ -1,5 +1,5 @@
 #include "MotionGenerationFactory.h"
-#include "DefaultMotionController/DefaultMotionControl.h"
+#include "DefaultMotionControl/DefaultMotionControl.h"
 
 
 namespace motion

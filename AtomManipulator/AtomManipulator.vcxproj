@@ -126,7 +126,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="MotionGeneration\DefaultMotionController\DefaultMotionControl.cpp" />
+    <ClCompile Include="MotionGeneration\DefaultMotionControl\DefaultMotionControl.cpp" />
     <ClCompile Include="MotionGeneration\KineChain\KineChain.cpp" />
     <ClCompile Include="MotionGeneration\Math\MatLib.cpp" />
     <ClCompile Include="MotionGeneration\MotionGenerationFactory.cpp" />
@@ -174,7 +174,7 @@
     <ClCompile Include="AtomManipulatorDlg.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="MotionGeneration\DefaultMotionController\DefaultMotionControl.h" />
+    <ClInclude Include="MotionGeneration\DefaultMotionControl\DefaultMotionControl.h" />
     <ClInclude Include="MotionGeneration\KineChain\KineChain.h" />
     <ClInclude Include="MotionGeneration\Math\MatLib.h" />
     <ClInclude Include="MotionGeneration\MotionGenerationFactory.h" />

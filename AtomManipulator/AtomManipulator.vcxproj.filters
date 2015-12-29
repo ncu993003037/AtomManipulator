@@ -177,14 +177,14 @@
     <ClCompile Include="MotionGeneration\MotionGenerator.cpp">
       <Filter>原始程式檔\MotionGeneration</Filter>
     </ClCompile>
-    <ClCompile Include="MotionGeneration\DefaultMotionController\DefaultMotionControl.cpp">
-      <Filter>原始程式檔\MotionGeneration\DefaultMotionController</Filter>
-    </ClCompile>
     <ClCompile Include="MotionGeneration\MotionGenerationFactory.cpp">
       <Filter>原始程式檔\MotionGeneration</Filter>
     </ClCompile>
     <ClCompile Include="MotorControl\MotorControlFactory.cpp">
       <Filter>原始程式檔\MotorControl</Filter>
+    </ClCompile>
+    <ClCompile Include="MotionGeneration\DefaultMotionControl\DefaultMotionControl.cpp">
+      <Filter>原始程式檔\MotionGeneration\DefaultMotionController</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -278,14 +278,14 @@
     <ClInclude Include="MotionGeneration\MotionGenerator.h">
       <Filter>原始程式檔\MotionGeneration</Filter>
     </ClInclude>
-    <ClInclude Include="MotionGeneration\DefaultMotionController\DefaultMotionControl.h">
-      <Filter>原始程式檔\MotionGeneration\DefaultMotionController</Filter>
-    </ClInclude>
     <ClInclude Include="MotionGeneration\MotionGenerationFactory.h">
       <Filter>原始程式檔\MotionGeneration</Filter>
     </ClInclude>
     <ClInclude Include="MotorControl\MotorControlFactory.h">
       <Filter>原始程式檔\MotorControl</Filter>
+    </ClInclude>
+    <ClInclude Include="MotionGeneration\DefaultMotionControl\DefaultMotionControl.h">
+      <Filter>原始程式檔\MotionGeneration\DefaultMotionController</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -1,6 +1,6 @@
 #pragma once
-#ifndef _MOTIONCONTROL_
-#define _MOTIONCONTROL_ 
+#ifndef _DEFAULTMOTIONCONTROL_
+#define _DEFAULTMOTIONCONTROL_ 
 
 #include "MotionGeneration/MotionGenerator.h"
 

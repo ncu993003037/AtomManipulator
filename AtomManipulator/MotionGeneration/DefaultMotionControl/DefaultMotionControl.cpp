@@ -1,9 +1,5 @@
 #include "DefaultMotionControl.h"
 #include "MotionGeneration/KineChain/KineChain.h"
-//#include <vector>
-//#include <cstdlib>
-//#include <cstring>
-//#include <string>
 #include <iostream>
 
 namespace motion
