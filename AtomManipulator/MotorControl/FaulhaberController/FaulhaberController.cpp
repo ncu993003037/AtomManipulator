@@ -61,13 +61,14 @@ namespace motor
 			: MotorController(config),
 			_config(config)
 		{	
+			printf("Info [Motor]: Create Faulhaber controller\n");
 		}
 
 		FaulhaberController::~FaulhaberController()
 		{
 			if (NULL != _DSP)
 				delete [] _DSP;
-			printf("Faulhaber controller destroyed\n");
+			printf("Info [Motor]: Faulhaber controller destroyed\n");
 		}
 
 		bool FaulhaberController::Init()

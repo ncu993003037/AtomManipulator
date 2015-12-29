@@ -39,7 +39,7 @@ namespace motion
 			Mat_xy_plu(p_err,   pd_r,   tw_d, 3); 	
 			Mat_xy_plu(o_err+1 ,od_r,  tw_d+3,3); 
 
-			motion::KineChain::GetRobotKineChain().get_Jac(Jac.J, DOF);	
+			motion::KineChain::GetInstance().get_Jac(Jac.J, DOF);	
 			Jac.svd();// Jac is corrupted
 
 			// Pseudo inverse // qd = V * Sinv * Utde

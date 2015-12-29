@@ -9,21 +9,22 @@ namespace motion
 		Bp(1), Kp(1), Bo(1), Ko(1), Bq(1), Kq(1),
 		DOF(config._DOF_),
 		Jac(6, config._DOF_, 1e-9),
-		_gThreadHandle(NULL),
-		_gThreadOpened(false),
+		_mThreadHandle(NULL),
+		_mThreadCreated(false),
 		ik_flag(false),
+		_mStopCalling(true),
 		eps(1e-3) // damping for singular value
 	{
 		delta_t = _config._sleep_time_micro_sec_ / 1e6;
 
 		o_n_9 = new double [9];
 		p_n = new double [3];
-		KineChain::GetRobotKineChain().get_f_orie(o_n_9, DOF);
-		KineChain::GetRobotKineChain().get_f_pos(p_n, DOF);
+		KineChain::GetInstance().get_f_orie(o_n_9, DOF);
+		KineChain::GetInstance().get_f_pos(p_n, DOF);
 
 		q = new double [DOF];
 		qd = new double [DOF];
-		KineChain::GetRobotKineChain().get_q(q);
+		KineChain::GetInstance().get_q(q);
 		Mat_zeros(qd, DOF);
 
 		qdd = new double [DOF];
@@ -36,53 +37,57 @@ namespace motion
 		Mat_zeros(qd_r, DOF);
 		Mat_zeros(qdd_r, DOF);
 
-		KineChain::GetRobotKineChain().get_f_pos(p_r, DOF);
+		KineChain::GetInstance().get_f_pos(p_r, DOF);
 		Mat_zeros(pd_r, 3);
 		Mat_zeros(pdd_r, 3);
-		KineChain::GetRobotKineChain().get_f_orie(o_r, DOF);
+		KineChain::GetInstance().get_f_orie(o_r, DOF);
 		Mat_zeros(od_r, 3);
 		Mat_zeros(odd_r, 3);
 
 		q_err = new double [DOF];
 		qd_err = new double [DOF];
+
+		printf("Info [Motion]: Create Motion Generation API \n");
 	}
 
 	MotionGenerator::~MotionGenerator()
 	{
+		_mStopCalling = true;
+		if (isThreadCreated())
+			Shutdown();	
+		printf("Info [Motion]: Motion Generation API destroyed \n");
 	}
 
 	void MotionGenerator::Launch()
 	{
 		QueryPerformanceFrequency(&_nFreq); 
 
-		if (!_gThreadOpened)
+		if (!_mThreadCreated)
 		{
-			_gThreadLife = true;
-			_gThreadHandle = CreateThread(NULL, 0, StaticThreadOpen, (void*) this, 0, &_gThreadID );
-			_gThreadOpened = true;
-			SetPriorityClass(_gThreadHandle, REALTIME_PRIORITY_CLASS);
-			SetThreadPriority(_gThreadHandle, THREAD_PRIORITY_TIME_CRITICAL);
-			SetThreadAffinityMask(_gThreadHandle, 1 << 0);
+			_mThreadLife = true;
+			_mThreadHandle = CreateThread(NULL, 0, CreateStaticThread, (void*) this, 0, &_mThreadID );
+			_mThreadCreated = true;
+			_mStopCalling = false;
+			SetPriorityClass(_mThreadHandle, REALTIME_PRIORITY_CLASS);
+			SetThreadPriority(_mThreadHandle, THREAD_PRIORITY_TIME_CRITICAL);
+			SetThreadAffinityMask(_mThreadHandle, 1 << 0);
 			printf("Info [Motion]: Thread opened\n");
 		}
 	}
 
 	bool MotionGenerator::Shutdown()
 	{
-		if (_gThreadLife && _gThreadOpened)
+		if (_mThreadLife && _mThreadCreated)
 		{
-			_gThreadLife = false; 
-
-			if (_gThreadLife)
-				_gThreadLife = false;
+			_mThreadLife = false; 
 
 			Sleep(500);
 
-			if ( NULL != _gThreadHandle && _gThreadOpened )
+			if ( NULL != _mThreadHandle )
 			{
-				DWORD ret = WaitForSingleObject( _gThreadHandle, INFINITE);
-				CloseHandle( _gThreadHandle );
-				_gThreadOpened = false;
+				DWORD ret = WaitForSingleObject( _mThreadHandle, INFINITE);
+				CloseHandle( _mThreadHandle );
+				_mThreadCreated = false;
 			}
 
 			printf("Info [Motion]: Thread has been closed\n");
@@ -92,7 +97,7 @@ namespace motion
 		return true;
 	}
 
-	DWORD WINAPI MotionGenerator::StaticThreadOpen(void* Param_)
+	DWORD WINAPI MotionGenerator::CreateStaticThread(void* Param_)
 	{
 		MotionGenerator *pthis = (MotionGenerator *) Param_;
 		return pthis->Run();
@@ -102,7 +107,7 @@ namespace motion
 	{
 		QueryPerformanceCounter(&_StartTime);
 
-		while (_gThreadLife)
+		while (_mThreadLife)
 		{
 			QueryPerformanceCounter(&_CurrentTime);
 			_ElapsedMicroseconds.QuadPart = _CurrentTime.QuadPart - _StartTime.QuadPart;
@@ -112,19 +117,22 @@ namespace motion
 			//printf("Info [Motion]: _ElapsedMicroseconds = %d\n",_ElapsedMicroseconds.QuadPart);
 			QueryPerformanceCounter(&_StartTime);
 
-			KineChain::GetRobotKineChain().get_f_orie(o_n_9, DOF);
-			KineChain::GetRobotKineChain().get_f_pos(p_n, DOF);
+			if (!_mStopCalling)
+			{
+				KineChain::GetInstance().get_f_orie(o_n_9, DOF);
+				KineChain::GetInstance().get_f_pos(p_n, DOF);
 
-			// Do something
-			if (ik_flag)
-				IKControlLoop();
-			else
-				JointControlLoop();
+				// Do something
+				if (ik_flag)
+					IKControlLoop();
+				else
+					JointControlLoop();
+				////////////////////////
 
-			KineChain::GetRobotKineChain().set_q(q);
-			KineChain::GetRobotKineChain().set_qd(qd);
-
-			motion::KineChain::GetRobotKineChain().FwdKine();
+				KineChain::GetInstance().set_q(q);
+				KineChain::GetInstance().set_qd(qd);
+				motion::KineChain::GetInstance().FwdKine();
+			}
 
 			usleep(_config._sleep_time_micro_sec_);
 		}
@@ -132,7 +140,7 @@ namespace motion
 		return 0;
 	}
 
-	int MotionGenerator::GetThreadOpened() const {return _gThreadOpened;}
+	int MotionGenerator::isThreadCreated() const {return _mThreadCreated;}
 
 	inline void MotionGenerator::usleep(__int64 usec_) //for WINAPI
 	{ 
@@ -281,7 +289,7 @@ namespace motion
 		q[n] = -PI;
 		}*/
 
-		KineChain::GetRobotKineChain().FwdKine();
+		KineChain::GetInstance().FwdKine();
 	}
 	void MotionGenerator::int_acc(void)
 	{
@@ -299,7 +307,7 @@ namespace motion
 		q[n] = -PI;
 		}*/
 
-		KineChain::GetRobotKineChain().FwdKine();
+		KineChain::GetInstance().FwdKine();
 	}
 
 	void MotionGenerator::set_BK_p(double damping, double bandwidth)

@@ -315,7 +315,7 @@ void COpenGLControl::DrawGLScene()
 
 
 	// Robot sticks
-	motion::KineChain::GetRobotKineChain().draw_stick();
+	motion::KineChain::GetInstance().draw_stick();
 
 	glPushMatrix();
 		glTranslatef( 0., 0., 0.);
@@ -333,7 +333,7 @@ void COpenGLControl::DrawGLScene()
 	if (DrawCurRArm)
 	{
 		double th[6] = {0};
-		motion::KineChain::GetRobotKineChain().get_q(th);
+		motion::KineChain::GetInstance().get_q(th);
 		float drawTheta[6] = {0};
 		for (int i = 0 ; i < 6 ; i++)
 			drawTheta[i] = th[i] * 180./3.1415926;

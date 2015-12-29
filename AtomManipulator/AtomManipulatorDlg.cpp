@@ -246,7 +246,7 @@ void CRobotArmDlg::OnBnClickedCheckMotor()
 	openGLControl.MotorAction = Motor_Action_Btn.GetCheck();
 	
 	std::shared_ptr<motor::MotorController> atom_motors 
-		= motor::MotorControlInterface::GetMotorControlInterface().GetInstancePtr();
+		= motor::MotorControlFactory::GetInstance().GetCurrentMotorController();
 	atom_motors->SetMotorAction(Motor_Action_Btn.GetCheck());
 
 	if (openGLControl.MotorAction)
@@ -369,7 +369,7 @@ void CRobotArmDlg::OnBnClickedButton11()
 		Robot_Mode_Btn.EnableWindow(FALSE);
 
 	std::shared_ptr<motion::MotionGenerator> atom_motion
-		= motion::MotionGenerationInterface::GetMotionGenerationInterface().GetInstancePtr();
+		= motion::MotionGenerationFactory::GetInstance().GetCurrentMotionGenerator();
 
 	double p_r [3] = {openGLControl.StaticX, openGLControl.StaticY, openGLControl.StaticZ};// m
 	double o_r [9] = {0};
@@ -396,14 +396,14 @@ void CRobotArmDlg::OnBnClickedButton11()
 
 	atom_motion->set_ik_control_mode(true);
 
-	if (!atom_motion->GetThreadOpened())
+	if (!atom_motion->isThreadCreated())
 		atom_motion->Launch();
 }
 
 void CRobotArmDlg::OnBnClickedButton5() //RESET BUTTON
 {
 	std::shared_ptr<motion::MotionGenerator> atom_motion
-		= motion::MotionGenerationInterface::GetMotionGenerationInterface().GetInstancePtr();
+		= motion::MotionGenerationFactory::GetInstance().GetCurrentMotionGenerator();
 
 	atom_motion->set_ik_control_mode(false);
 
@@ -427,21 +427,20 @@ void CRobotArmDlg::OnBnClickedRobotMode()
 		atom_motor_config._DOF_ = ROBOT_DOF;
 		atom_motor_config._expected_baud_rate_ = 115200;
 		atom_motor_config._sleep_time_micro_sec_ = 6000;
-		motor::MotorControlInterface::GetMotorControlInterface()
-			.CreateInstancePtr(motor::FAULHABER, atom_motor_config);
-
-		std::shared_ptr<motor::MotorController> atom_motors 
-			= motor::MotorControlInterface::GetMotorControlInterface().GetInstancePtr();
+		std::shared_ptr<motor::MotorController> atom_motors = 
+			motor::MotorControlFactory::GetInstance()
+			.NewMotorController(motor::FAULHABER, atom_motor_config);
 
 		SetDlgItemText(IDC_STATUS, "[Real-robot Mode] Connecting....");
 
 		atom_motors->Launch();
 
-		if (atom_motors->GetThreadOpened()) 
+		if (atom_motors->isThreadCreated()) 
 		{
 			Motor_Action_Btn.EnableWindow(TRUE);
 			SetDlgItemText(IDC_STATUS, "[Real-robot Mode] Atom is ready to roll.");
 		} else {
+			motor::MotorControlFactory::GetInstance().DeleteCurrentMotorController();
 			Robot_Mode = 0;
 			Robot_Mode_Btn.SetCheck(0);
 			SetDlgItemText(IDC_STATUS, "[Real-robot Mode] Fail to connect motors..");
@@ -449,7 +448,7 @@ void CRobotArmDlg::OnBnClickedRobotMode()
 			SetDlgItemText(IDC_STATUS, "[Simulation Mode] Atom is ready to roll.");
 		}
 	} else {
-		motor::MotorControlInterface::GetMotorControlInterface().ResetInstancePtr();
+		motor::MotorControlFactory::GetInstance().DeleteCurrentMotorController();
 
 		Motor_Action_Btn.EnableWindow(FALSE);
 		SetDlgItemText(IDC_STATUS, "[Simulation Mode] Atom is ready to roll.");

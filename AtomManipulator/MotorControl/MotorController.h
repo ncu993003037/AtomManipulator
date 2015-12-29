@@ -24,7 +24,7 @@ namespace motor
 
 		void SetMotorInput(float *d);
 		void SetMotorAction(bool action);
-		int GetThreadOpened() const;
+		int isThreadCreated() const;
 
 	protected:
 		virtual bool Init() = 0;
@@ -32,16 +32,17 @@ namespace motor
 
 	private:
 		// Thread in class (WINAPI) or you can use boost thread
-		static DWORD WINAPI StaticThreadOpen(void* Param);
+		static DWORD WINAPI CreateStaticThread(void* Param);
 		DWORD WINAPI Run();
 
 		void inline usleep(__int64 usec); // for WINAPI
 
 	private:
-		HANDLE	_gThreadHandle; // Motor control thread handle
-		DWORD	_gThreadID; //  Motor control thread ID
-		bool	_gThreadOpened; // ボも羥场北thread琌ゴ秨
-		bool	_gThreadLife; //  Motor control 琌篨夹
+		HANDLE	_mThreadHandle; // Motor control thread handle
+		DWORD	_mThreadID; //  Motor control thread ID
+		bool	_mThreadCreated; // ボも羥场北thread琌ゴ秨
+		bool	_mThreadLife; //  Motor control 琌篨夹
+		bool _mStopCalling;
 
 		LARGE_INTEGER _StartTime;
 		LARGE_INTEGER _CurrentTime;

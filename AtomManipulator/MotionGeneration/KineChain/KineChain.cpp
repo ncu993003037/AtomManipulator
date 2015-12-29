@@ -1,4 +1,4 @@
-#include "MotorControl/MotorControlInterface.h" // should be placed before KineChain.h
+#include "MotorControl/MotorControlFactory.h" // should be placed before KineChain.h
 #include "KineChain.h"
 
 
@@ -240,11 +240,11 @@ namespace motion
 			Mat_xy_plu (f_o+9*n+9, f_p+3*(n-1), f_p+3*n, 3) ; //  p2 = p2_tmp + p1	(p2_tmp is stored in f_o+9*n+9)		
 		}
 
-		std::shared_ptr<motor::MotorController> _motors = motor::MotorControlInterface::
-			GetMotorControlInterface().GetInstancePtr();
+		std::shared_ptr<motor::MotorController> _motors = motor::MotorControlFactory::
+			GetInstance().GetCurrentMotorController();
 		if (_motors)
 		{
-			if (_motors->GetThreadOpened())
+			if (_motors->isThreadCreated())
 				_motors->SetMotorInput((float *)q);
 		}
 	}

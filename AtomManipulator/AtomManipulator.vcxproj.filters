@@ -168,23 +168,23 @@
     <ClCompile Include="MotorControl\FaulhaberController\FaulhaberController.cpp">
       <Filter>原始程式檔\MotorControl\Faulhaber</Filter>
     </ClCompile>
-    <ClCompile Include="MotorControl\MotorControlInterface.cpp">
-      <Filter>原始程式檔\MotorControl</Filter>
-    </ClCompile>
     <ClCompile Include="MotionGeneration\KineChain\KineChain.cpp">
       <Filter>原始程式檔\MotionGeneration\KineChain</Filter>
     </ClCompile>
     <ClCompile Include="MotionGeneration\Math\MatLib.cpp">
       <Filter>原始程式檔\MotionGeneration\Math</Filter>
     </ClCompile>
-    <ClCompile Include="MotionGeneration\MotionGenerationInterface.cpp">
-      <Filter>原始程式檔\MotionGeneration</Filter>
-    </ClCompile>
     <ClCompile Include="MotionGeneration\MotionGenerator.cpp">
       <Filter>原始程式檔\MotionGeneration</Filter>
     </ClCompile>
     <ClCompile Include="MotionGeneration\DefaultMotionController\DefaultMotionControl.cpp">
       <Filter>原始程式檔\MotionGeneration\DefaultMotionController</Filter>
+    </ClCompile>
+    <ClCompile Include="MotionGeneration\MotionGenerationFactory.cpp">
+      <Filter>原始程式檔\MotionGeneration</Filter>
+    </ClCompile>
+    <ClCompile Include="MotorControl\MotorControlFactory.cpp">
+      <Filter>原始程式檔\MotorControl</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -266,9 +266,6 @@
     <ClInclude Include="MotorControl\FaulhaberController\FaulhaberController.h">
       <Filter>原始程式檔\MotorControl\Faulhaber</Filter>
     </ClInclude>
-    <ClInclude Include="MotorControl\MotorControlInterface.h">
-      <Filter>原始程式檔\MotorControl</Filter>
-    </ClInclude>
     <ClInclude Include="Global_Instances.h">
       <Filter>標頭檔</Filter>
     </ClInclude>
@@ -278,14 +275,17 @@
     <ClInclude Include="MotionGeneration\Math\MatLib.h">
       <Filter>原始程式檔\MotionGeneration\Math</Filter>
     </ClInclude>
-    <ClInclude Include="MotionGeneration\MotionGenerationInterface.h">
-      <Filter>原始程式檔\MotionGeneration</Filter>
-    </ClInclude>
     <ClInclude Include="MotionGeneration\MotionGenerator.h">
       <Filter>原始程式檔\MotionGeneration</Filter>
     </ClInclude>
     <ClInclude Include="MotionGeneration\DefaultMotionController\DefaultMotionControl.h">
       <Filter>原始程式檔\MotionGeneration\DefaultMotionController</Filter>
+    </ClInclude>
+    <ClInclude Include="MotionGeneration\MotionGenerationFactory.h">
+      <Filter>原始程式檔\MotionGeneration</Filter>
+    </ClInclude>
+    <ClInclude Include="MotorControl\MotorControlFactory.h">
+      <Filter>原始程式檔\MotorControl</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -6,15 +6,21 @@ namespace motor
 	MotorController::MotorController(const gConfig &config)
 		: _config(config),
 		_init_success(false),
-		_gThreadHandle(NULL),
-		_gThreadOpened(false),
-		_motor_action_go(false)
+		_mThreadHandle(NULL),
+		_mThreadCreated(false),
+		_motor_action_go(false),
+		_mStopCalling(true)
 	{
 		//printf("%d %d %d\n",_config._DOF_,_config._expected_baud_rate_,_config._sleep_time_micro_sec_);
+		printf("Info [Motor]: Create Motor Control API \n");
 	}
 
 	MotorController::~MotorController()
-	{
+	{	
+		_mStopCalling = true;
+		if (isThreadCreated())
+			Shutdown();	
+		printf("Info [Motor]: Motor Control API destroyed\n");		
 	}
 
 	void MotorController::Launch()
@@ -33,36 +39,37 @@ namespace motor
 		_motor_input = new float[_config._DOF_];
 		memset(_motor_input, 0, _config._DOF_*sizeof(float));
 
-		if (!_gThreadOpened)
+		if (!_mThreadCreated)
 		{
-			_gThreadLife = true;
-			_gThreadHandle = CreateThread(NULL, 0, StaticThreadOpen, (void*) this, 0, &_gThreadID );
-			_gThreadOpened = true;
-			SetPriorityClass(_gThreadHandle, REALTIME_PRIORITY_CLASS);
-			SetThreadPriority(_gThreadHandle, THREAD_PRIORITY_TIME_CRITICAL);
-			SetThreadAffinityMask(_gThreadHandle, 1 << 0);
+			_mThreadLife = true;
+			_mThreadHandle = CreateThread(NULL, 0, CreateStaticThread, (void*) this, 0, &_mThreadID );
+			_mThreadCreated = true;
+			_mStopCalling = false;
+			SetPriorityClass(_mThreadHandle, REALTIME_PRIORITY_CLASS);
+			SetThreadPriority(_mThreadHandle, THREAD_PRIORITY_TIME_CRITICAL);
+			SetThreadAffinityMask(_mThreadHandle, 1 << 0);
 			printf("Info [Motor]: Thread opened\n");
 		}
 	}
 
 	bool MotorController::Shutdown()
 	{
-		if (_gThreadLife && _gThreadOpened)
+		if (_mThreadLife && _mThreadCreated)
 		{
-			_gThreadLife = false; 
-
 			if (_motor_action_go)
 				_motor_action_go = false;
-			if (_gThreadLife)
-				_gThreadLife = false;
 
 			Sleep(500);
 
-			if ( NULL != _gThreadHandle && _gThreadOpened )
+			_mThreadLife = false; 
+
+			Sleep(500);
+
+			if ( NULL != _mThreadHandle )
 			{
-				DWORD ret = WaitForSingleObject( _gThreadHandle, INFINITE);
-				CloseHandle( _gThreadHandle );
-				_gThreadOpened = false;
+				DWORD ret = WaitForSingleObject( _mThreadHandle, INFINITE);
+				CloseHandle( _mThreadHandle );
+				_mThreadCreated = false;
 			}
 
 			Sleep(500);
@@ -77,7 +84,7 @@ namespace motor
 		return true;
 	}
 
-	DWORD WINAPI MotorController::StaticThreadOpen(void* Param_)
+	DWORD WINAPI MotorController::CreateStaticThread(void* Param_)
 	{
 		MotorController *pthis = (MotorController *) Param_;
 		return pthis->Run();
@@ -87,19 +94,22 @@ namespace motor
 	{
 		QueryPerformanceCounter(&_StartTime);
 
-		while (_gThreadLife)
+		while (_mThreadLife)
 		{
 			QueryPerformanceCounter(&_CurrentTime);
 			_ElapsedMicroseconds.QuadPart = _CurrentTime.QuadPart - _StartTime.QuadPart;
 			_ElapsedMicroseconds.QuadPart *= 1000000; // Micro-seconds
 			_ElapsedMicroseconds.QuadPart /= _nFreq.QuadPart;
 
-			printf("Info [Motor]: _ElapsedMicroseconds = %d\n",_ElapsedMicroseconds.QuadPart);
+			//printf("Info [Motor]: _ElapsedMicroseconds = %d\n",_ElapsedMicroseconds.QuadPart);
 			QueryPerformanceCounter(&_StartTime);
 
-			// Do something
-			if(_motor_action_go)
-				WriteCommand(_motor_input);
+			if (!_mStopCalling)
+			{
+				// Do something
+				if(_motor_action_go)
+					WriteCommand(_motor_input);
+			}
 
 			usleep(_config._sleep_time_micro_sec_);
 		}
@@ -107,7 +117,7 @@ namespace motor
 		return 0;
 	}
 
-	int MotorController::GetThreadOpened() const {return _gThreadOpened;}
+	int MotorController::isThreadCreated() const {return _mThreadCreated;}
 
 	inline void MotorController::usleep(__int64 usec_) //for WINAPI
 	{ 
@@ -124,7 +134,7 @@ namespace motor
 
 	void MotorController::SetMotorInput(float *d) 
 	{
-		if (!_init_success || !_gThreadLife)
+		if (!_init_success || !_mThreadLife)
 		{
 			printf("Error [Motor]: Fail to write motor commands\n");
 			return;

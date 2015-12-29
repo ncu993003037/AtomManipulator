@@ -26,10 +26,10 @@ namespace motion
 		KineChain(void); // initialize with zero DH parameter	
 		~KineChain(void);
 
-		static KineChain& GetRobotKineChain() // Singleton
+		static KineChain& GetInstance() // Singleton
 		{
-			static KineChain _robot;
-			return _robot;
+			static KineChain _instance;
+			return _instance;
 		}
 
 		void InitKineChain(int dof);
