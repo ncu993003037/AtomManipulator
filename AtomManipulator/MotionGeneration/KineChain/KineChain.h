@@ -7,7 +7,7 @@
 #include "MotionGeneration/Math/MatLib.h"
 #include <fstream>
 #include <string>
-#include "glut.h"
+#include "OpenGL_Model/GL/glut.h"
 
 // Notations:
 // frame 0 is the base frame of the kinematic chain
