@@ -245,7 +245,12 @@ namespace motion
 		if (_motors)
 		{
 			if (_motors->isThreadCreated())
-				_motors->SetMotorInput((float *)q);
+			{
+				float *q_deg = new float[DOF];
+				for (int i = 0 ; i < DOF ; i++)
+					q_deg[i] = q[i] * 180.0 / PI;
+				_motors->SetMotorInput(q_deg);
+			}
 		}
 	}
 

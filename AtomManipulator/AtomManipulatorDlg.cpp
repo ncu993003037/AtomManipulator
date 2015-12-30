@@ -405,6 +405,9 @@ void CRobotArmDlg::OnBnClickedButton5() //RESET BUTTON
 	std::shared_ptr<motion::MotionGenerator> atom_motion
 		= motion::MotionGenerationFactory::GetInstance().GetCurrentMotionGenerator();
 
+	double q_r[ROBOT_DOF] = {0};
+	atom_motion->set_q_r(q_r);
+
 	atom_motion->set_ik_control_mode(false);
 
 	if (!Robot_Mode)
